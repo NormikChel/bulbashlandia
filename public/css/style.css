@@ -129,17 +129,29 @@ button:focus-visible {
   font-size: 17px;
   letter-spacing: -0.01em;
   white-space: nowrap;
+  text-decoration: none;
 }
 .logo:hover { color: var(--fg); }
-.logo-icon {
+
+/* Иконка сайта */
+.logo::before {
+  content: '';
+  display: inline-block;
   width: 28px;
   height: 28px;
-  display: inline-block;
   flex-shrink: 0;
-  border-radius: 6px;
-  object-fit: contain;
+  background-image: url('/img/favicon/favicon.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
-.logo-text { display: inline; }
+
+/* Название сайта — из data-logo-text, локализованное через ERB */
+.logo::after {
+  content: attr(data-logo-text);
+  color: inherit;
+  font: inherit;
+}
 
 .site-nav {
   display: flex;
@@ -614,13 +626,14 @@ button:focus-visible {
 
 @media (max-width: 720px) {
   .header-inner { gap: 12px; }
-  .logo-text {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-  }
+  .logo::after {
+   position: absolute;
+   width: 1px;
+   height: 1px;
+   overflow: hidden;
+   clip: rect(0, 0, 0, 0);
+   white-space: nowrap;
+}
   .site-nav { margin-left: 0; }
   .site-nav a { padding: 8px 10px; font-size: 14px; }
   .btn-icon { width: 36px; height: 36px; }

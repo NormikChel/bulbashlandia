@@ -8,10 +8,9 @@
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="logo" href="<%= l('/') %>" aria-label="Бульбашляндия">
-		<img class="logo-icon" src="/img/favicon/favicon.svg" alt="" width="28" height="28" aria-hidden="true">
-		<span class="logo-text">Бульбашляндия</span>
-	  </a>
+      <a class="logo" href="<%= l('/') %>"
+	   aria-label="<%= h(@t.dig('meta', 'site_name')) %>"
+	   data-logo-text="<%= h(@t.dig('meta', 'site_name')) %>"></a>
 
       <nav class="site-nav" aria-label="<%= h(@t.dig('menu', 'main')) %>">
         <a href="<%= l('/') %>"><%= h(@t.dig('nav', 'home')) %></a>
