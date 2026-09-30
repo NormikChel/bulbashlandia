@@ -2,6 +2,7 @@
   # Для кнопки-тоггла показываем только базовый код языка:
   # be-latn → BE, zh-Hans → ZH, zh-Hant → ZH
   lang_code = @locale.split('-').first
+  suffix    = path_without_locale   # '' | '/cities' | '/articles/foo' …
 %>
 <div class="switcher lang-switcher" data-open="false">
   <button type="button"
@@ -16,7 +17,7 @@
 
     <%# ---------- Русский ---------- %>
     <li class="lang-item <%= 'is-active' if @locale == 'ru' %>">
-      <a href="/ru" hreflang="ru"
+      <a href="/ru<%= suffix %>" hreflang="ru"
          class="lang-name"
          aria-label="<%= h(@t.dig('lang', 'ru')) %>">
         <span class="lang-flag" aria-hidden="true">🇷🇺</span>
@@ -26,25 +27,25 @@
 
     <%# ---------- Беларуская (кірыліца + łacinka) ---------- %>
     <li class="lang-item <%= 'is-active' if @locale.start_with?('be') %>">
-      <a href="/be" hreflang="be"
+      <a href="/be<%= suffix %>" hreflang="be"
          class="lang-name"
          aria-label="<%= h(@t.dig('lang', 'be')) %>">
         <span class="lang-flag" aria-hidden="true">🇧🇾</span>
         <span class="lang-text"><%= h(@t.dig('lang', 'be')) %></span>
       </a>
 
-      <%# 
-        Внимание: Если символ "Ł" отображается как "t" или "K", 
-        проблема в шрифте (subsetting). Убедитесь, что шрифт 
+      <%#
+        Внимание: Если символ "Ł" отображается как "t" или "K",
+        проблема в шрифте (subsetting). Убедитесь, что шрифт
         для .script::after поддерживает латиницу с диакритикой.
       %>
       <span class="script-switch" role="group" aria-label="<%= h(@t.dig('lang', 'choose_script') || 'Выберите алфавит') %>">
-        <a href="/be" hreflang="be"
+        <a href="/be<%= suffix %>" hreflang="be"
            class="script <%= 'is-active' if @locale == 'be' %>"
            aria-label="<%= h(@t.dig('lang', 'be_cyr_title')) %>"
            title="<%= h(@t.dig('lang', 'be_cyr_title')) %>"
            data-script="К"></a>
-        <a href="/be-latn" hreflang="be-latn"
+        <a href="/be-latn<%= suffix %>" hreflang="be-latn"
            class="script <%= 'is-active' if @locale == 'be-latn' %>"
            aria-label="<%= h(@t.dig('lang', 'be_latn_title')) %>"
            title="<%= h(@t.dig('lang', 'be_latn_title')) %>"
@@ -54,7 +55,7 @@
 
     <%# ---------- English ---------- %>
     <li class="lang-item <%= 'is-active' if @locale == 'en' %>">
-      <a href="/en" hreflang="en"
+      <a href="/en<%= suffix %>" hreflang="en"
          class="lang-name"
          aria-label="<%= h(@t.dig('lang', 'en')) %>">
         <span class="lang-flag" aria-hidden="true">🇬🇧</span>
@@ -64,7 +65,7 @@
 
     <%# ---------- Українська ---------- %>
     <li class="lang-item <%= 'is-active' if @locale == 'uk' %>">
-      <a href="/uk" hreflang="uk"
+      <a href="/uk<%= suffix %>" hreflang="uk"
          class="lang-name"
          aria-label="<%= h(@t.dig('lang', 'uk')) %>">
         <span class="lang-flag" aria-hidden="true">🇺🇦</span>
@@ -74,7 +75,7 @@
 
     <%# ---------- 中文 (简体 + 繁體) ---------- %>
     <li class="lang-item <%= 'is-active' if @locale.start_with?('zh') %>">
-      <a href="/zh-Hans" hreflang="zh-Hans"
+      <a href="/zh-Hans<%= suffix %>" hreflang="zh-Hans"
          class="lang-name"
          aria-label="<%= h(@t.dig('lang', 'zh_hans_title')) %>">
         <span class="lang-flag" aria-hidden="true">🇨🇳</span>
@@ -82,12 +83,12 @@
       </a>
 
       <span class="script-switch" role="group" aria-label="<%= h(@t.dig('lang', 'choose_script') || '选择字体') %>">
-        <a href="/zh-Hans" hreflang="zh-Hans"
+        <a href="/zh-Hans<%= suffix %>" hreflang="zh-Hans"
            class="script <%= 'is-active' if @locale == 'zh-Hans' %>"
            aria-label="<%= h(@t.dig('lang', 'zh_hans_title')) %>"
            title="<%= h(@t.dig('lang', 'zh_hans_title')) %>"
            data-script="简"></a>
-        <a href="/zh-Hant" hreflang="zh-Hant"
+        <a href="/zh-Hant<%= suffix %>" hreflang="zh-Hant"
            class="script <%= 'is-active' if @locale == 'zh-Hant' %>"
            aria-label="<%= h(@t.dig('lang', 'zh_hant_title')) %>"
            title="<%= h(@t.dig('lang', 'zh_hant_title')) %>"

@@ -104,6 +104,14 @@ helpers do
     @t.dig(*parts) || I18n.hash('ru').dig(*parts) || key
   end
 
+  # Текущий путь без языкового префикса.
+  # '/ru/cities'          → '/cities'
+  # '/be-latn/articles/x' → '/articles/x'
+  # '/ru'                 → ''
+  def path_without_locale
+    request.path_info.sub(%r{\A/[A-Za-z-]+(?=/|\z)}, '')
+  end
+
   # Элементы для RSS/Atom фидов
   def feed_items
     Article.published.first(20).map do |a|
@@ -126,7 +134,7 @@ end
 # --- 8. Страницы с локалью ---
 get '/:lang' do
   pass unless I18n.valid?(params[:lang])
-  @cities = City.order(:name).limit(6).all
+  @cities   = City.order(:name).limit(6).all
   @articles = Article.published.first(3)
   erb :index
 end
@@ -166,6 +174,8 @@ end
 
 get '/:lang/about' do
   pass unless I18n.valid?(params[:lang])
+  @page_title = "#{@t.dig('nav', 'about') || 'О проекте'} — #{@t.dig('meta', 'site_name')}"
+  @canonical  = "#{request.base_url}/#{@locale}/about"
   erb :about
 end
 

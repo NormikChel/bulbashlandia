@@ -32,7 +32,42 @@
 
   <main class="site-main">
     <div class="container">
-      <%= yield %>
+      <article class="about-page">
+        <h1 class="about-title">
+          <%= h(@t.dig('about', 'title') || @t.dig('nav', 'about') || 'О проекте') %>
+        </h1>
+
+        <p class="about-lead">
+          <%= h(@t.dig('about', 'lead') ||
+                'Бульбашляндия — некоммерческий просветительский проект о Беларуси: её городах, истории, культуре и кухне.') %>
+        </p>
+
+        <section class="about-section">
+          <h2><%= h(@t.dig('about', 'what_title') || 'Что здесь есть') %></h2>
+          <ul>
+            <li><%= h(@t.dig('about', 'what_cities')    || 'Каталог городов — от Бреста до Полоцка, с краткой справкой о каждом.') %></li>
+            <li><%= h(@t.dig('about', 'what_articles')  || 'Статьи об истории, культуре и кухне — без воды и пафоса.') %></li>
+            <li><%= h(@t.dig('about', 'what_langs')     || 'Материалы на русском, беларуском (кириллица и латинка), английском, украинском и китайском.') %></li>
+            <li><%= h(@t.dig('about', 'what_a11y')      || 'Версия для слабовидящих, светлая и тёмная темы, корректная работа со скринридерами.') %></li>
+          </ul>
+        </section>
+
+        <section class="about-section">
+          <h2><%= h(@t.dig('about', 'tech_title') || 'Как это сделано') %></h2>
+          <p>
+            <%= h(@t.dig('about', 'tech_body') ||
+                  'Сайт написан на Ruby (Sinatra + Sequel), отдаётся как PWA с офлайн-кэшем, поддерживает RSS и Atom. Исходники открыты.') %>
+          </p>
+        </section>
+
+        <section class="about-section">
+          <h2><%= h(@t.dig('about', 'contacts_title') || 'Связь') %></h2>
+          <p>
+            <%= h(@t.dig('about', 'contacts_body') ||
+                  'Если нашли опечатку, ошибку перевода или хотите предложить материал — напишите нам.') %>
+          </p>
+        </section>
+      </article>
     </div>
   </main>
 
