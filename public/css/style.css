@@ -261,7 +261,7 @@ button:focus-visible {
   font-weight: 600;
 }
 
-/* ---------- Языковой дропдаун ---------- */
+/* ---------- Языковой дропдаун (исправленный) ---------- */
 
 .lang-switcher .switcher-toggle {
   position: relative;
@@ -271,7 +271,7 @@ button:focus-visible {
   gap: 6px;
 }
 
-/* Иконка глобуса (маска, красится в currentColor) */
+/* Иконка глобуса */
 .lang-switcher .switcher-toggle::before {
   content: '';
   display: inline-block;
@@ -299,47 +299,56 @@ button:focus-visible {
   color: currentColor;
 }
 
-/* Пункты меню */
+/* Увеличиваем минимальную ширину меню, чтобы текст не сжимался */
+.switcher-menu {
+  min-width: 260px;
+}
+
+/* Строка языка */
+.lang-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 2px 0;
+}
+
 .lang-name {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  width: 100%;
-  padding: 9px 12px;
+  flex: 1;
+  padding: 8px 10px;
   border-radius: var(--radius-sm);
   color: var(--fg);
   font-size: 14px;
   text-decoration: none;
   transition: background-color .12s;
+  white-space: nowrap; /* Жестко запрещаем ломать слова */
 }
+
 .lang-name:hover {
   background: var(--surface-2);
   color: var(--fg);
 }
 
-/* Флаг */
-.lang-name::before {
-  content: attr(data-flag);
+.lang-flag {
   font-size: 16px;
   line-height: 1;
   flex-shrink: 0;
 }
 
-/* Название языка */
-.lang-name::after {
-  content: attr(data-label);
+.lang-text {
   color: inherit;
   font: inherit;
 }
 
-/* Строка беларуского языка с двумя скриптами */
-.lang-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.lang-item.is-active .lang-text {
+  color: var(--accent);
+  font-weight: 600;
 }
-.lang-item .lang-name { flex: 1; }
 
+/* Переключатель скриптов (К/Ł и 简/繁) */
 .script-switch {
   display: inline-flex;
   gap: 2px;
@@ -347,7 +356,10 @@ button:focus-visible {
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--surface-2);
+  flex-shrink: 0;
+  margin-right: 4px;
 }
+
 .script {
   display: inline-flex;
   align-items: center;
@@ -361,7 +373,10 @@ button:focus-visible {
   text-decoration: none;
   transition: background-color .12s, color .12s;
 }
-.script:hover { color: var(--fg); }
+
+.script:hover { 
+  color: var(--fg); 
+}
 
 .script::before {
   content: attr(data-script);

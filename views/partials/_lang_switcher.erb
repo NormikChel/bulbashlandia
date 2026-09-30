@@ -18,18 +18,20 @@
     <li class="lang-item <%= 'is-active' if @locale == 'ru' %>">
       <a href="/ru" role="menuitem" hreflang="ru"
          class="lang-name"
-         aria-label="<%= h(@t.dig('lang', 'ru')) %>"
-         data-flag="🇷🇺"
-         data-label="<%= h(@t.dig('lang', 'ru')) %>"></a>
+         aria-label="<%= h(@t.dig('lang', 'ru')) %>">
+        <span class="lang-flag" aria-hidden="true">🇷🇺</span>
+        <span class="lang-text"><%= h(@t.dig('lang', 'ru')) %></span>
+      </a>
     </li>
 
     <%# ---------- Беларуская (кірыліца + łacinka) ---------- %>
     <li class="lang-item <%= 'is-active' if ['be', 'be-latn'].include?(@locale) %>">
       <a href="/be" role="menuitem" hreflang="be"
          class="lang-name"
-         aria-label="<%= h(@t.dig('lang', 'be')) %>"
-         data-flag="🇧🇾"
-         data-label="<%= h(@t.dig('lang', 'be')) %>"></a>
+         aria-label="<%= h(@t.dig('lang', 'be')) %>">
+        <span class="lang-flag" aria-hidden="true">🇧🇾</span>
+        <span class="lang-text"><%= h(@t.dig('lang', 'be')) %></span>
+      </a>
 
       <span class="script-switch" role="group" aria-label="<%= h(@t.dig('lang', 'choose')) %>">
         <a href="/be" hreflang="be"
@@ -49,27 +51,30 @@
     <li class="lang-item <%= 'is-active' if @locale == 'en' %>">
       <a href="/en" role="menuitem" hreflang="en"
          class="lang-name"
-         aria-label="<%= h(@t.dig('lang', 'en')) %>"
-         data-flag="🇬🇧"
-         data-label="<%= h(@t.dig('lang', 'en')) %>"></a>
+         aria-label="<%= h(@t.dig('lang', 'en')) %>">
+        <span class="lang-flag" aria-hidden="true">🇬🇧</span>
+        <span class="lang-text"><%= h(@t.dig('lang', 'en')) %></span>
+      </a>
     </li>
 
     <%# ---------- Українська ---------- %>
     <li class="lang-item <%= 'is-active' if @locale == 'uk' %>">
       <a href="/uk" role="menuitem" hreflang="uk"
          class="lang-name"
-         aria-label="<%= h(@t.dig('lang', 'uk')) %>"
-         data-flag="🇺🇦"
-         data-label="<%= h(@t.dig('lang', 'uk')) %>"></a>
+         aria-label="<%= h(@t.dig('lang', 'uk')) %>">
+        <span class="lang-flag" aria-hidden="true">🇺🇦</span>
+        <span class="lang-text"><%= h(@t.dig('lang', 'uk')) %></span>
+      </a>
     </li>
 
     <%# ---------- 中文 (简体 + 繁體) ---------- %>
     <li class="lang-item <%= 'is-active' if ['zh-Hans', 'zh-Hant'].include?(@locale) %>">
       <a href="/zh-Hans" role="menuitem" hreflang="zh-Hans"
          class="lang-name"
-         aria-label="<%= h(@t.dig('lang', 'zh_hans_title')) %>"
-         data-flag="🇨🇳"
-         data-label="中文"></a>
+         aria-label="<%= h(@t.dig('lang', 'zh_hans_title')) %>">
+        <span class="lang-flag" aria-hidden="true">🇨🇳</span>
+        <span class="lang-text">中文</span>
+      </a>
 
       <span class="script-switch" role="group" aria-label="<%= h(@t.dig('lang', 'choose')) %>">
         <a href="/zh-Hans" hreflang="zh-Hans"
