@@ -1,23 +1,33 @@
-<div class="lang-switcher" data-open="false">
-  <button class="lang-toggle btn-icon" aria-haspopup="true" aria-expanded="false">
-    🌐 <span class="lang-current"><%= @locale %></span>
+<div class="switcher lang-switcher" data-open="false">
+  <button type="button" class="btn-icon switcher-toggle" aria-haspopup="true" aria-expanded="false" aria-label="<%= @t['lang']['label'] %>" title="<%= @t['lang']['label'] %>">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+    </svg>
+    <span class="lang-code"><%= @locale %></span>
   </button>
 
-  <ul class="lang-menu" role="menu">
-    <% [['ru','ru'], ['be','be_cyr'], ['be-latn','be_latn'], ['en','en'], ['uk','uk']].each do |url, key| %>
-      <li class="<%= 'is-active' if @locale == url %>">
-        <% if url == 'be' %>
-          <div class="lang-row">
-            <a href="/be/" role="menuitem"><%= @t['lang']['be'] %></a>
-            <div class="script-switch">
-              <a href="/be/"  class="script <%= 'is-active' if @locale == 'be' %>" title="Кірыліца">К</a>
-              <a href="/be-latn/" class="script <%= 'is-active' if @locale == 'be-latn' %>" title="Łacinka">Ł</a>
-            </div>
-          </div>
-        <% else %>
-          <a href="/<%= url %>/" role="menuitem"><%= @t['lang'][key] %></a>
-        <% end %>
-      </li>
+  <ul class="switcher-menu" role="menu">
+    <% [
+      ['ru', 'ru'],
+      ['be', 'be'],
+      ['be-latn', 'be_latn'],
+      ['en', 'en'],
+      ['uk', 'uk']
+    ].each do |url, key| %>
+      <% if url == 'be' %>
+        <li class="lang-item <%= 'is-active' if @locale == 'be' || @locale == 'be-latn' %>">
+          <a href="/be/" role="menuitem" class="lang-name"><%= @t['lang']['be'] %></a>
+          <span class="script-switch" role="group" aria-label="<%= @t['lang']['choose'] %>">
+            <a href="/be/"      class="script <%= 'is-active' if @locale == 'be' %>"      title="<%= @t['lang']['be_cyr_title'] %>">К</a>
+            <a href="/be-latn/" class="script <%= 'is-active' if @locale == 'be-latn' %>" title="<%= @t['lang']['be_latn_title'] %>">Ł</a>
+          </span>
+        </li>
+      <% else %>
+        <li class="lang-item <%= 'is-active' if @locale == url %>">
+          <a href="/<%= url %>/" role="menuitem" class="lang-name"><%= @t['lang'][key] %></a>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 </div>

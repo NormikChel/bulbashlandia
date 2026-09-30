@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<%= @locale %>" data-theme="light">
+<html lang="<%= @locale %>" data-theme="light" data-theme-mode="system">
 <head>
   <%= erb :'partials/_seo' %>
   <link rel="stylesheet" href="/js/button-visually-impaired-javascript-master/dist/css/bvi.min.css">
@@ -7,27 +7,39 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="logo" href="<%= l('/') %>">🥔 Бульбашляндия</a>
+    <div class="container header-inner">
+      <a class="logo" href="<%= l('/') %>">
+        <span class="logo-icon" aria-hidden="true">🥔</span>
+        <span class="logo-text">Бульбашляндия</span>
+      </a>
 
-    <nav class="site-nav">
-      <a href="<%= l('/') %>"><%= @t['nav']['home'] %></a>
-      <a href="<%= l('/cities') %>"><%= @t['nav']['cities'] %></a>
-      <a href="<%= l('/about') %>"><%= @t['nav']['about'] %></a>
-    </nav>
+      <nav class="site-nav" aria-label="<%= @t['menu']['main'] %>">
+        <a href="<%= l('/') %>"><%= @t['nav']['home'] %></a>
+        <a href="<%= l('/cities') %>"><%= @t['nav']['cities'] %></a>
+        <a href="<%= l('/about') %>"><%= @t['nav']['about'] %></a>
+      </nav>
 
-    <div class="header-actions">
-      <a href="#" class="bvi-open btn-icon" aria-label="<%= @t['a11y']['version'] %>">👁</a>
-      <%= erb :'partials/_theme_switcher' %>
-      <%= erb :'partials/_lang_switcher' %>
+      <div class="header-actions">
+        <a href="#" class="btn-icon bvi-open" aria-label="<%= @t['a11y']['version'] %>" title="<%= @t['a11y']['version'] %>">
+          <span aria-hidden="true">👁</span>
+        </a>
+        <%= erb :'partials/_theme_switcher' %>
+        <%= erb :'partials/_lang_switcher' %>
+      </div>
     </div>
   </header>
 
   <main class="site-main">
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </main>
 
   <footer class="site-footer">
-    <p>© 2026 Бульбашляндия</p>
+    <div class="container footer-inner">
+      <p>© 2026 Бульбашляндия</p>
+      <p class="footer-note">Сделано с любовью к Беларуси</p>
+    </div>
   </footer>
 
   <script src="/js/lenis.min.js"></script>
