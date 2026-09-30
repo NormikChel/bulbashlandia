@@ -1,6 +1,15 @@
 (function () {
   'use strict';
 
+  // ---------- Service Worker (самое первое, критично для PWA) ----------
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+      .register('/sw.js', { scope: '/' })
+      .catch(function (err) {
+        console.warn('SW registration failed:', err);
+      });
+  }
+
   // ---------- Тема ----------
   var root = document.documentElement;
 
@@ -15,13 +24,12 @@
     root.dataset.theme = dark ? 'dark' : 'light';
   }
 
-  applyMode(getMode());
-
   try {
+    applyMode(getMode());
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
       if (getMode() === 'system') applyMode('system');
     });
-  } catch (e) { /* старые браузеры */ }
+  } catch (e) { console.warn('theme:', e); }
 
   // ---------- Дропдауны (тема + язык) ----------
   function closeAll(except) {
@@ -34,65 +42,46 @@
     });
   }
 
-  document.querySelectorAll('.switcher').forEach(function (switcher) {
-    var toggle = switcher.querySelector('.switcher-toggle');
-    if (!toggle) return;
+  try {
+    document.querySelectorAll('.switcher').forEach(function (switcher) {
+      var toggle = switcher.querySelector('.switcher-toggle');
+      if (!toggle) return;
 
-    toggle.addEventListener('click', function (e) {
-      e.stopPropagation();
-      e.preventDefault();
-      var willOpen = switcher.dataset.open !== 'true';
-      closeAll(switcher);
-      switcher.dataset.open = willOpen ? 'true' : 'false';
-      toggle.setAttribute('aria-expanded', String(willOpen));
+      toggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        var willOpen = switcher.dataset.open !== 'true';
+        closeAll(switcher);
+        switcher.dataset.open = willOpen ? 'true' : 'false';
+        toggle.setAttribute('aria-expanded', String(willOpen));
+      });
     });
-  });
 
-  document.addEventListener('click', function () { closeAll(null); });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeAll(null);
-  });
-
-  // ---------- Кнопки темы ----------
-  document.querySelectorAll('[data-theme-mode]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var mode = btn.dataset.themeMode;
-      localStorage.setItem('theme', mode);
-      applyMode(mode);
-      closeAll(null);
+    document.addEventListener('click', function () { closeAll(null); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAll(null);
     });
-  });
+
+    document.querySelectorAll('[data-theme-mode]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var mode = btn.dataset.themeMode;
+        localStorage.setItem('theme', mode);
+        applyMode(mode);
+        closeAll(null);
+      });
+    });
+  } catch (e) { console.warn('switchers:', e); }
 
   // ---------- BVI ----------
-  if (window.isvek && document.querySelector('.bvi-open')) {
-    var map = { ru: 'ru-RU', en: 'en-US', uk: 'ru-RU', be: 'ru-RU', 'be-latn': 'ru-RU' };
-    var lang = map[root.lang] || 'ru-RU';
-    try {
+  try {
+    if (window.isvek && document.querySelector('.bvi-open')) {
+      var map = { ru: 'ru-RU', en: 'en-US', uk: 'ru-RU', be: 'ru-RU', 'be-latn': 'ru-RU' };
+      var lang = map[root.lang] || 'ru-RU';
       window.bvi = new isvek.Bvi({ target: '.bvi-open', lang: lang });
-    } catch (e) {
-      console.warn('BVI init failed:', e);
     }
-  }
+  } catch (e) { console.warn('BVI init failed:', e); }
 
-  // ---------- Lenis (плавный скролл) ----------
-  if (window.Lenis) {
-    var lenis = new Lenis({ duration: 1.1, smoothWheel: true });
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-  }
-
-  // ---------- Service Worker ----------
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker
-        .register('/sw.js', { scope: '/' })
-        .catch(function (err) {
-          console.warn('SW registration failed:', err);
-        });
-    });
-  }
+  // Lenis уже инициализируется в lenis-init.min.js:
+  //   window.lenisInstance = new Lenis({ autoRaf: true, ... })
+  // Дублировать не нужно. Если захочешь управлять им из кода — используй window.lenisInstance.
 })();
