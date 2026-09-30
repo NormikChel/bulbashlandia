@@ -1,5 +1,5 @@
 <%
-  title       = @t.dig('meta', 'title')       || 'Бульбашляндия'
+  title       = @page_title || @t.dig('meta', 'title') || 'Бульбашляндия'
   description = @t.dig('meta', 'description') || ''
   keywords    = @t.dig('meta', 'keywords')    || ''
   site_name   = @t.dig('meta', 'site_name')   || 'Бульбашляндия'

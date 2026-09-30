@@ -145,18 +145,23 @@ end
 
 # --- 10. 404 и 500 ---
 not_found do
-  @locale ||= 'ru'
-  @t      ||= I18n.hash(@locale)
-  @lang   ||= @locale
+  @locale    ||= 'ru'
+  @t         ||= I18n.hash(@locale)
+  @lang      ||= @locale
+  @canonical ||= "#{request.base_url}/#{@locale}"
+  @page_title = "#{@t.dig('errors', 'not_found_title')} — #{@t.dig('meta', 'site_name')}"
   status 404
-  erb :'404', layout: false
+  erb :'404'
 end
 
 error do
   e = env['sinatra.error']
   warn "[500] #{e.class}: #{e.message}\n#{Array(e.backtrace).first(8).join("\n")}"
-  @locale ||= 'ru'
-  @t      ||= I18n.hash(@locale)
-  @lang   ||= @locale
-  erb :'404', layout: false
+  @locale    ||= 'ru'
+  @t         ||= I18n.hash(@locale)
+  @lang      ||= @locale
+  @canonical ||= "#{request.base_url}/#{@locale}"
+  @page_title = "#{@t.dig('errors', 'server_title')} — #{@t.dig('meta', 'site_name')}"
+  status 500
+  erb :'404'
 end

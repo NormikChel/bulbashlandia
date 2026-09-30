@@ -1,16 +1,20 @@
-<!DOCTYPE html>
-<html lang="<%= @locale || 'ru' %>">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>404 — <%= @t ? @t['errors']['not_found_title'] : 'Страница не найдена' %></title>
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-  <main class="site-main">
-    <h1>404</h1>
-    <p><%= @t ? @t['errors']['not_found_text'] : 'Страница не найдена' %></p>
-    <p><a href="/ru/">← <%= @t ? @t['errors']['back_home'] : 'На главную' %></a></p>
-  </main>
-</body>
-</html>
+<section class="error-page" aria-labelledby="error-title">
+  <div class="error-code" aria-hidden="true">404</div>
+
+  <h1 id="error-title" class="error-title">
+    <%= h(@t.dig('errors', 'not_found_title')) %>
+  </h1>
+
+  <p class="error-text">
+    <%= h(@t.dig('errors', 'not_found_text')) %>
+  </p>
+
+  <div class="error-actions">
+    <a class="btn btn-primary" href="<%= l('/') %>">
+      <%= h(@t.dig('errors', 'back_home')) %>
+    </a>
+    <a class="btn btn-secondary" href="<%= l('/cities') %>">
+      <%= h(@t.dig('nav', 'cities')) %>
+    </a>
+  </div>
+</section>
