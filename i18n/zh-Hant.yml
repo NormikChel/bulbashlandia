@@ -1,0 +1,176 @@
+meta:
+  site_name: "布爾巴什蘭迪亞"
+  title: "布爾巴什蘭迪亞 — 關於白俄羅斯的網站：城市、歷史、文化、美食"
+  description: "白俄羅斯互動指南：大城市和小鎮、歷史、傳統、美食和自然。關於這個國家的一切重要資訊 — 盡在一處。"
+  keywords: "白俄羅斯, 白俄羅斯城市, 白俄羅斯歷史, 文化, 傳統, 馬鈴薯餅, 明斯克, 格羅德諾, 布列斯特, 波洛茨克"
+  author: "布爾巴什蘭迪亞"
+  og_type: "website"
+  og_image_alt: "布爾巴什蘭迪亞 — 關於白俄羅斯的網站"
+  twitter_card: "summary_large_image"
+
+nav:
+  home: "首頁"
+  cities: "城市"
+  history: "歷史"
+  culture: "文化"
+  cuisine: "美食"
+  nature: "自然"
+  about: "關於項目"
+  contacts: "聯絡方式"
+  search: "搜尋"
+
+theme:
+  label: "主題"
+  system: "跟隨系統"
+  system_hint: "遵循瀏覽器或系統設定"
+  light: "淺色"
+  dark: "深色"
+  toggle: "切換主題"
+
+lang:
+  label: "網站語言"
+  choose: "選擇語言"
+  current: "當前語言"
+  ru: "На русском"
+  be: "Па-беларуску"
+  be_cyr: "К"
+  be_cyr_title: "西里爾字母"
+  be_latn: "Ł"
+  be_latn_title: "拉丁字母"
+  en: "In English"
+  uk: "Українською"
+  zh_hans: "简"
+  zh_hant: "繁"
+  zh_hans_title: "簡體中文"
+  zh_hant_title: "繁體中文"
+  switch_to: "切換到"
+
+hero:
+  title: "歡迎來到布爾巴什蘭迪亞"
+  subtitle: "白俄羅斯的城市、歷史、文化和美食 — 盡在一處"
+  cta_primary: "探索城市"
+  cta_secondary: "關於項目"
+  badge: "白俄羅斯指南"
+
+sections:
+  cities_title: "城市"
+  cities_subtitle: "從首都到最古老的城鎮"
+  history_title: "歷史"
+  history_subtitle: "波洛茨克公國、立陶宛大公國、波蘭立陶宛聯邦、20世紀"
+  culture_title: "文化"
+  culture_subtitle: "傳統、工藝、音樂、文學"
+  cuisine_title: "美食"
+  cuisine_subtitle: "馬鈴薯餅、巴布卡、科爾敦、馬昌卡"
+  nature_title: "自然"
+  nature_subtitle: "別洛韋日森林、納羅奇湖、布拉斯拉夫湖區"
+
+cities:
+  title: "白俄羅斯城市"
+  subtitle: "大城市和小城鎮 — 各有各的故事"
+  all_cities: "所有城市"
+  search_placeholder: "尋找城市…"
+  no_results: "未找到與您的查詢相符的結果"
+  not_found: "未找到城市"
+  back_to_list: "← 返回所有城市"
+  region_label: "州"
+  description_label: "描述"
+
+city:
+  region: "州"
+  population: "人口"
+  founded: "建城"
+  area: "面積"
+  attractions: "看點"
+  history: "歷史"
+  photo: "照片"
+  read_more: "了解更多"
+
+about:
+  title: "關於項目"
+  intro: "布爾巴什蘭迪亞 — 關於白俄羅斯的小型獨立項目。"
+  mission: "我們在一處匯集關於這個國家最重要的資訊：城市、人民、文化、美食和自然。沒有多餘的修飾和廢話。"
+  contacts_title: "聯絡我們"
+  contacts_text: "有想法、建議或想提供材料？"
+  feedback: "給我們寫信"
+  license: "除非另有說明，材料採用 CC BY-SA 4.0 授權條款。"
+
+footer:
+  copyright: "© 2026 布爾巴什蘭迪亞"
+  made_with: "以對白俄羅斯的熱愛製作"
+  links_title: "欄目"
+  social_title: "社交"
+  legal_title: "法律"
+  privacy: "隱私"
+  terms: "條款"
+  cookies: "Cookie"
+  source_code: "原始碼"
+
+a11y:
+  version: "視障版本"
+  open: "打開無障礙面板"
+  close: "關閉無障礙面板"
+  settings: "無障礙設定"
+  skip_to_content: "跳到主要內容"
+  fontSize: "字體大小"
+  contrast: "對比度"
+  images: "圖像"
+  speech: "語音"
+  clear: "重設設定"
+
+search:
+  placeholder: "站內搜尋…"
+  button: "搜尋"
+  results: "搜尋結果"
+  no_results: "未找到"
+  one_result: "找到 1 個結果"
+  many_results: "找到 {n} 個結果"
+  clear: "清除"
+
+common:
+  loading: "載入中…"
+  error: "出錯了"
+  success: "完成"
+  read_more: "閱讀更多"
+  show_more: "顯示更多"
+  collapse: "收起"
+  back: "返回"
+  next: "下一個"
+  prev: "上一個"
+  close: "關閉"
+  open: "打開"
+  yes: "是"
+  no: "否"
+  save: "儲存"
+  cancel: "取消"
+  all: "全部"
+  more: "更多"
+  search: "搜尋"
+
+menu:
+  open: "打開選單"
+  close: "關閉選單"
+  main: "主選單"
+
+breadcrumbs:
+  home: "首頁"
+  separator: "/"
+
+errors:
+  not_found_title: "頁面未找到"
+  not_found_text: "看起來這個頁面迷失在波列西耶的森林中了。"
+  server_title: "伺服器錯誤"
+  server_text: "我們正在處理。請嘗試返回首頁。"
+  back_home: "返回首頁"
+
+time:
+  updated: "更新於"
+  published: "發布於"
+  reading_time: "分鐘閱讀"
+
+legal:
+  privacy_title: "隱私政策"
+  privacy_text: "我們不收集個人資料，也不會將其分享給第三方。"
+
+seo:
+  og_locale: "zh_TW"
+  hreflang: "zh-Hant"

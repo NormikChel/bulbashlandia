@@ -1,13 +1,14 @@
 require 'yaml'
 
 module I18n
-  LOCALES = %w[ru be be-latn en uk].freeze
+  LOCALES = %w[ru be be-latn en uk zh-Hans zh-Hant].freeze
   DEFAULT = 'ru'
   DATA = {}
 
   def self.load!
     LOCALES.each do |loc|
-      DATA[loc] = YAML.load_file(File.expand_path("../i18n/#{loc}.yml", __dir__))
+      path = File.expand_path("../i18n/#{loc}.yml", __dir__)
+      DATA[loc] = YAML.load_file(path)
     end
   end
 
@@ -20,7 +21,6 @@ module I18n
     DATA.dig(locale, *keys) || DATA.dig(DEFAULT, *keys) || key
   end
 
-  # Плоский доступ для шаблонов: только то, что нужно
   def self.hash(locale = DEFAULT)
     DATA[locale] || DATA[DEFAULT]
   end

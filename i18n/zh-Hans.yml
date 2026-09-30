@@ -1,0 +1,176 @@
+meta:
+  site_name: "布尔巴什兰迪亚"
+  title: "布尔巴什兰迪亚 — 关于白俄罗斯的网站：城市、历史、文化、美食"
+  description: "白俄罗斯互动指南：大城市和小城镇、历史、传统、美食和自然。关于这个国家的一切重要信息 — 尽在一处。"
+  keywords: "白俄罗斯, 白俄罗斯城市, 白俄罗斯历史, 文化, 传统, 土豆饼, 明斯克, 格罗德诺, 布列斯特, 波洛茨克"
+  author: "布尔巴什兰迪亚"
+  og_type: "website"
+  og_image_alt: "布尔巴什兰迪亚 — 关于白俄罗斯的网站"
+  twitter_card: "summary_large_image"
+
+nav:
+  home: "首页"
+  cities: "城市"
+  history: "历史"
+  culture: "文化"
+  cuisine: "美食"
+  nature: "自然"
+  about: "关于项目"
+  contacts: "联系方式"
+  search: "搜索"
+
+theme:
+  label: "主题"
+  system: "跟随系统"
+  system_hint: "遵循浏览器或系统设置"
+  light: "浅色"
+  dark: "深色"
+  toggle: "切换主题"
+
+lang:
+  label: "网站语言"
+  choose: "选择语言"
+  current: "当前语言"
+  ru: "На русском"
+  be: "Па-беларуску"
+  be_cyr: "К"
+  be_cyr_title: "西里尔字母"
+  be_latn: "Ł"
+  be_latn_title: "拉丁字母"
+  en: "In English"
+  uk: "Українською"
+  zh_hans: "简"
+  zh_hant: "繁"
+  zh_hans_title: "简体中文"
+  zh_hant_title: "繁體中文"
+  switch_to: "切换到"
+
+hero:
+  title: "欢迎来到布尔巴什兰迪亚"
+  subtitle: "白俄罗斯的城市、历史、文化和美食 — 尽在一处"
+  cta_primary: "探索城市"
+  cta_secondary: "关于项目"
+  badge: "白俄罗斯指南"
+
+sections:
+  cities_title: "城市"
+  cities_subtitle: "从首都到最古老的城镇"
+  history_title: "历史"
+  history_subtitle: "波洛茨克公国、立陶宛大公国、波兰立陶宛联邦、20世纪"
+  culture_title: "文化"
+  culture_subtitle: "传统、工艺、音乐、文学"
+  cuisine_title: "美食"
+  cuisine_subtitle: "土豆饼、巴布卡、科尔敦、马昌卡"
+  nature_title: "自然"
+  nature_subtitle: "别洛韦日森林、纳罗奇湖、布拉斯拉夫湖区"
+
+cities:
+  title: "白俄罗斯城市"
+  subtitle: "大城市和小城镇 — 各有各的故事"
+  all_cities: "所有城市"
+  search_placeholder: "查找城市…"
+  no_results: "未找到与您的查询匹配的结果"
+  not_found: "未找到城市"
+  back_to_list: "← 返回所有城市"
+  region_label: "州"
+  description_label: "描述"
+
+city:
+  region: "州"
+  population: "人口"
+  founded: "建城"
+  area: "面积"
+  attractions: "看点"
+  history: "历史"
+  photo: "照片"
+  read_more: "了解更多"
+
+about:
+  title: "关于项目"
+  intro: "布尔巴什兰迪亚 — 关于白俄罗斯的小型独立项目。"
+  mission: "我们在一处汇集关于这个国家最重要的信息：城市、人民、文化、美食和自然。没有多余的修饰和废话。"
+  contacts_title: "联系我们"
+  contacts_text: "有想法、建议或想提供材料？"
+  feedback: "给我们写信"
+  license: "除非另有说明，材料采用 CC BY-SA 4.0 许可协议。"
+
+footer:
+  copyright: "© 2026 布尔巴什兰迪亚"
+  made_with: "以对白俄罗斯的热爱制作"
+  links_title: "栏目"
+  social_title: "社交"
+  legal_title: "法律"
+  privacy: "隐私"
+  terms: "条款"
+  cookies: "Cookie"
+  source_code: "源代码"
+
+a11y:
+  version: "视障版本"
+  open: "打开无障碍面板"
+  close: "关闭无障碍面板"
+  settings: "无障碍设置"
+  skip_to_content: "跳到主要内容"
+  fontSize: "字体大小"
+  contrast: "对比度"
+  images: "图像"
+  speech: "语音"
+  clear: "重置设置"
+
+search:
+  placeholder: "站内搜索…"
+  button: "搜索"
+  results: "搜索结果"
+  no_results: "未找到"
+  one_result: "找到 1 个结果"
+  many_results: "找到 {n} 个结果"
+  clear: "清除"
+
+common:
+  loading: "加载中…"
+  error: "出错了"
+  success: "完成"
+  read_more: "阅读更多"
+  show_more: "显示更多"
+  collapse: "收起"
+  back: "返回"
+  next: "下一个"
+  prev: "上一个"
+  close: "关闭"
+  open: "打开"
+  yes: "是"
+  no: "否"
+  save: "保存"
+  cancel: "取消"
+  all: "全部"
+  more: "更多"
+  search: "搜索"
+
+menu:
+  open: "打开菜单"
+  close: "关闭菜单"
+  main: "主菜单"
+
+breadcrumbs:
+  home: "首页"
+  separator: "/"
+
+errors:
+  not_found_title: "页面未找到"
+  not_found_text: "看起来这个页面迷失在波列西耶的森林中了。"
+  server_title: "服务器错误"
+  server_text: "我们正在处理。请尝试返回首页。"
+  back_home: "返回首页"
+
+time:
+  updated: "更新于"
+  published: "发布于"
+  reading_time: "分钟阅读"
+
+legal:
+  privacy_title: "隐私政策"
+  privacy_text: "我们不收集个人数据，也不会将其分享给第三方。"
+
+seo:
+  og_locale: "zh_CN"
+  hreflang: "zh-Hans"
