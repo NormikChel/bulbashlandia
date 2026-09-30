@@ -6,6 +6,7 @@ module Manifest
     description = t.dig('meta', 'description') || ''
 
     {
+      id:               "/#{locale}",
       name:             name,
       short_name:       name,
       description:      description,
@@ -29,21 +30,21 @@ module Manifest
         { src: '/img/favicon/maskable-icon-512x512.png',   sizes: '512x512', type: 'image/png', purpose: 'maskable' }
       ],
       screenshots: [
-		  {
-			src:        '/img/screenshots/home-wide.png',
-			sizes:      '1280x720',
-			type:       'image/png',
-			form_factor: 'wide',
-			label:      "#{name} — #{t.dig('nav', 'home')}"
-		  },
-		  {
-			src:        '/img/screenshots/home-narrow.png',
-			sizes:      '720x1280',
-			type:       'image/png',
-			form_factor: 'narrow',
-			label:      "#{name} — #{t.dig('nav', 'home')}"
-		  }
-		],
+        {
+          src:         '/img/screenshots/home-wide.png',
+          sizes:       '1920x1080',
+          type:        'image/png',
+          form_factor: 'wide',
+          label:       "#{name} — #{t.dig('nav', 'home')}"
+        },
+        {
+          src:         '/img/screenshots/home-narrow.png',
+          sizes:       '390x840',
+          type:        'image/png',
+          form_factor: 'narrow',
+          label:       "#{name} — #{t.dig('nav', 'home')}"
+        }
+      ],
       shortcuts: [
         {
           name: t.dig('nav', 'cities'),
