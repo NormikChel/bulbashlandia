@@ -1,68 +1,56 @@
-<%
-  # Список локалей: [код URL, ключ в словаре, флаг]
-  languages = [
-    ['ru',      'ru',      '🇷🇺'],
-    ['be',      'be',      '🇧🇾'],
-    ['be-latn', 'be_latn', '🇧🇾'],
-    ['en',      'en',      '🇬🇧'],
-    ['uk',      'uk',      '🇺🇦'],
-  ]
-%>
 <div class="switcher lang-switcher" data-open="false">
   <button type="button"
           class="btn-icon switcher-toggle"
           aria-haspopup="true"
           aria-expanded="false"
           aria-label="<%= h(@t.dig('lang', 'label')) %>"
-          title="<%= h(@t.dig('lang', 'label')) %>">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-         stroke="currentColor" stroke-width="2"
-         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="10"/>
-      <path d="M2 12h20"/>
-      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-    </svg>
-    <span class="lang-code"><%= @locale %></span>
-  </button>
+          title="<%= h(@t.dig('lang', 'label')) %>"
+          data-lang-code="<%= @locale %>"></button>
 
   <ul class="switcher-menu" role="menu" aria-label="<%= h(@t.dig('lang', 'choose')) %>">
-    <% languages.each do |url, key, flag| %>
-      <% if url == 'be' %>
-        <%# Беларуская: строка с двумя скриптами К / Ł %>
-        <% be_active = @locale == 'be' || @locale == 'be-latn' %>
-        <li class="lang-item lang-item-be <%= 'is-active' if be_active %>">
-          <a href="/be"
-             role="menuitem"
-             class="lang-name"
-             hreflang="be">
-            <span class="lang-flag" aria-hidden="true"><%= flag %></span>
-            <span><%= h(@t.dig('lang', 'be')) %></span>
-          </a>
-          <span class="script-switch" role="group"
-                aria-label="<%= h(@t.dig('lang', 'choose')) %>">
-            <a href="/be"
-               class="script <%= 'is-active' if @locale == 'be' %>"
-               title="<%= h(@t.dig('lang', 'be_cyr_title')) %>"
-               aria-label="<%= h(@t.dig('lang', 'be_cyr_title')) %>"
-               hreflang="be">К</a>
-            <a href="/be-latn"
-               class="script <%= 'is-active' if @locale == 'be-latn' %>"
-               title="<%= h(@t.dig('lang', 'be_latn_title')) %>"
-               aria-label="<%= h(@t.dig('lang', 'be_latn_title')) %>"
-               hreflang="be-latn">Ł</a>
-          </span>
-        </li>
-      <% else %>
-        <li class="lang-item <%= 'is-active' if @locale == url %>">
-          <a href="/<%= url %>"
-             role="menuitem"
-             class="lang-name"
-             hreflang="<%= url %>">
-            <span class="lang-flag" aria-hidden="true"><%= flag %></span>
-            <span><%= h(@t.dig('lang', key)) %></span>
-          </a>
-        </li>
-      <% end %>
-    <% end %>
+    <li class="lang-item <%= 'is-active' if @locale == 'ru' %>">
+      <a href="/ru" role="menuitem" hreflang="ru"
+         class="lang-name"
+         aria-label="<%= h(@t.dig('lang', 'ru')) %>"
+         data-flag="🇷🇺"
+         data-label="<%= h(@t.dig('lang', 'ru')) %>"></a>
+    </li>
+
+    <li class="lang-item lang-item-be <%= 'is-active' if ['be', 'be-latn'].include?(@locale) %>">
+      <a href="/be" role="menuitem" hreflang="be"
+         class="lang-name"
+         aria-label="<%= h(@t.dig('lang', 'be')) %>"
+         data-flag="🇧🇾"
+         data-label="<%= h(@t.dig('lang', 'be')) %>"></a>
+
+      <span class="script-switch" role="group" aria-label="<%= h(@t.dig('lang', 'choose')) %>">
+        <a href="/be" hreflang="be"
+           class="script <%= 'is-active' if @locale == 'be' %>"
+           aria-label="<%= h(@t.dig('lang', 'be_cyr_title')) %>"
+           title="<%= h(@t.dig('lang', 'be_cyr_title')) %>"
+           data-script="К"></a>
+        <a href="/be-latn" hreflang="be-latn"
+           class="script <%= 'is-active' if @locale == 'be-latn' %>"
+           aria-label="<%= h(@t.dig('lang', 'be_latn_title')) %>"
+           title="<%= h(@t.dig('lang', 'be_latn_title')) %>"
+           data-script="Ł"></a>
+      </span>
+    </li>
+
+    <li class="lang-item <%= 'is-active' if @locale == 'en' %>">
+      <a href="/en" role="menuitem" hreflang="en"
+         class="lang-name"
+         aria-label="<%= h(@t.dig('lang', 'en')) %>"
+         data-flag="🇬🇧"
+         data-label="<%= h(@t.dig('lang', 'en')) %>"></a>
+    </li>
+
+    <li class="lang-item <%= 'is-active' if @locale == 'uk' %>">
+      <a href="/uk" role="menuitem" hreflang="uk"
+         class="lang-name"
+         aria-label="<%= h(@t.dig('lang', 'uk')) %>"
+         data-flag="🇺🇦"
+         data-label="<%= h(@t.dig('lang', 'uk')) %>"></a>
+    </li>
   </ul>
 </div>

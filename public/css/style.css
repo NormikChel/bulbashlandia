@@ -207,14 +207,6 @@ button:focus-visible {
 
 .switcher { position: relative; }
 
-.switcher .lang-code {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: currentColor;
-}
-
 .switcher-menu {
   position: absolute;
   top: calc(100% + 8px);
@@ -269,6 +261,77 @@ button:focus-visible {
   font-weight: 600;
 }
 
+/* ---------- Языковой дропдаун ---------- */
+
+.lang-switcher .switcher-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* Иконка глобуса (маска, красится в currentColor) */
+.lang-switcher .switcher-toggle::before {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M2 12h20' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M2 12h20' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+/* Код языка рядом с глобусом */
+.lang-switcher .switcher-toggle::after {
+  content: attr(data-lang-code);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: currentColor;
+}
+
+/* Пункты меню */
+.lang-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--fg);
+  font-size: 14px;
+  text-decoration: none;
+  transition: background-color .12s;
+}
+.lang-name:hover {
+  background: var(--surface-2);
+  color: var(--fg);
+}
+
+/* Флаг */
+.lang-name::before {
+  content: attr(data-flag);
+  font-size: 16px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Название языка */
+.lang-name::after {
+  content: attr(data-label);
+  color: inherit;
+  font: inherit;
+}
+
 /* Строка беларуского языка с двумя скриптами */
 .lang-item {
   display: flex;
@@ -299,6 +362,13 @@ button:focus-visible {
   transition: background-color .12s, color .12s;
 }
 .script:hover { color: var(--fg); }
+
+.script::before {
+  content: attr(data-script);
+  font: inherit;
+  color: inherit;
+}
+
 .script.is-active {
   background: var(--accent);
   color: #fff;
@@ -627,13 +697,13 @@ button:focus-visible {
 @media (max-width: 720px) {
   .header-inner { gap: 12px; }
   .logo::after {
-   position: absolute;
-   width: 1px;
-   height: 1px;
-   overflow: hidden;
-   clip: rect(0, 0, 0, 0);
-   white-space: nowrap;
-}
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
   .site-nav { margin-left: 0; }
   .site-nav a { padding: 8px 10px; font-size: 14px; }
   .btn-icon { width: 36px; height: 36px; }
