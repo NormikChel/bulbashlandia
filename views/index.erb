@@ -25,7 +25,7 @@
       <a class="card" href="<%= l("/articles/#{article.slug}") %>">
         <h3><%= h(article.localized_title(@locale)) %></h3>
         <p class="region"><%= h(article.category) %></p>
-        <p class="excerpt"><%= h(article.excerpt.to_s) %></p>
+        <p class="excerpt"><%= h(article.localized_excerpt(@locale)) %></p>
       </a>
     <% end %>
   </div>

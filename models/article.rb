@@ -17,6 +17,8 @@ class Article < Sequel::Model(:articles)
     when 'be-latn' then title_latn    || title_be || title
     when 'en'      then title_en      || title
     when 'uk'      then title_uk      || title
+    when 'zh-Hans' then title_zh_hans || title_en || title
+    when 'zh-Hant' then title_zh_hant || title_en || title
     else title
     end
   end
@@ -27,8 +29,16 @@ class Article < Sequel::Model(:articles)
     when 'be-latn' then body_latn    || body_be || body
     when 'en'      then body_en      || body
     when 'uk'      then body_uk      || body
+    when 'zh-Hans' then body_zh_hans || body_en || body
+    when 'zh-Hant' then body_zh_hant || body_en || body
     else body
     end
+  end
+
+  def localized_excerpt(locale = 'ru', limit = 200)
+    text = localized_body(locale).to_s
+    return self[:excerpt].to_s if text.empty?
+    text.length > limit ? "#{text[0, limit].rstrip}…" : text
   end
 
   def reading_time(locale = 'ru')

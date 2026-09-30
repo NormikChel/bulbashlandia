@@ -1,26 +1,26 @@
 <header class="page-header">
-  <h1><%= @t['cities']['title'] %></h1>
-  <p class="lead"><%= @t['cities']['subtitle'] %></p>
+  <h1><%= h(@t.dig('cities', 'title')) %></h1>
+  <p class="lead"><%= h(@t.dig('cities', 'subtitle')) %></p>
 </header>
 
 <form class="cities-search" action="<%= l('/cities') %>" method="get" role="search">
   <input type="search"
          name="q"
-         placeholder="<%= @t['cities']['search_placeholder'] %>"
+         placeholder="<%= h(@t.dig('cities', 'search_placeholder')) %>"
          value="<%= h(params[:q].to_s) %>"
-         aria-label="<%= @t['cities']['search_placeholder'] %>">
-  <button type="submit" class="btn btn-primary"><%= @t['search']['button'] %></button>
+         aria-label="<%= h(@t.dig('cities', 'search_placeholder')) %>">
+  <button type="submit"><%= h(@t.dig('search', 'button')) %></button>
 </form>
 
 <% if @cities.empty? %>
-  <p class="empty"><%= @t['cities']['no_results'] %></p>
+  <p class="empty"><%= h(@t.dig('cities', 'no_results')) %></p>
 <% else %>
   <div class="cities-grid">
     <% @cities.each do |city| %>
       <a class="card" href="<%= l("/cities/#{city.slug}") %>">
         <h3><%= h(city.localized_name(@locale)) %></h3>
         <p class="region"><%= h(city.localized_region(@locale)) %></p>
-        <p class="excerpt"><%= h(city.excerpt(@locale, 100)) %></p>
+        <p class="excerpt"><%= h(city.localized_excerpt(@locale, 100)) %></p>
       </a>
     <% end %>
   </div>

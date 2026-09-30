@@ -3,11 +3,11 @@
 </header>
 
 <div class="cities-grid">
-  <% @articles.each do |a| %>
-    <a class="card" href="<%= l("/articles/#{a.slug}") %>">
-      <h2><%= h(a.localized_title(@locale)) %></h2>
-      <p class="region"><%= h(a.category) %></p>
-      <p class="excerpt"><%= h(a.excerpt.to_s) %></p>
+  <% @articles.each do |article| %>
+    <a class="card" href="<%= l("/articles/#{article.slug}") %>">
+      <h2><%= h(article.localized_title(@locale)) %></h2>
+      <p class="region"><%= h(article.category) %></p>
+      <p class="excerpt"><%= h(article.localized_excerpt(@locale)) %></p>
     </a>
   <% end %>
 </div>

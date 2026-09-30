@@ -2,8 +2,7 @@ class City < Sequel::Model(:cities)
   plugin :timestamps, update_on_create: true
   plugin :validation_helpers
 
-  # Псевдонимы для локали — чтобы в шаблоне писать `city.localized_name`
-  LOCALES = %w[ru be be_latn en uk].freeze
+  LOCALES = %w[ru be be-latn en uk zh-Hans zh-Hant].freeze
 
   def validate
     validates_presence [:name, :slug, :region]
@@ -11,13 +10,14 @@ class City < Sequel::Model(:cities)
     validates_format /\A[a-z0-9-]+\z/, :slug, message: 'только строчные латинские буквы, цифры и дефис'
   end
 
-  # Возвращает название города для указанной локали с фолбэком на русский
   def localized_name(locale = 'ru')
     case locale.to_s
     when 'be'      then name_be      || name
     when 'be-latn' then name_latn    || name_be || name
     when 'en'      then name_en      || name
     when 'uk'      then name_uk      || name
+    when 'zh-Hans' then name_zh_hans || name_en || name
+    when 'zh-Hant' then name_zh_hant || name_en || name
     else name
     end
   end
@@ -28,6 +28,8 @@ class City < Sequel::Model(:cities)
     when 'be-latn' then region_latn    || region_be || region
     when 'en'      then region_en      || region
     when 'uk'      then region_uk      || region
+    when 'zh-Hans' then region_zh_hans || region_en || region
+    when 'zh-Hant' then region_zh_hant || region_en || region
     else region
     end
   end
@@ -38,12 +40,13 @@ class City < Sequel::Model(:cities)
     when 'be-latn' then description_latn    || description_be || description
     when 'en'      then description_en      || description
     when 'uk'      then description_uk      || description
+    when 'zh-Hans' then description_zh_hans || description_en || description
+    when 'zh-Hant' then description_zh_hant || description_en || description
     else description
     end
   end
 
-  # Для карточек и превью — первые N символов описания
-  def excerpt(locale = 'ru', limit = 160)
+  def localized_excerpt(locale = 'ru', limit = 160)
     text = localized_description(locale).to_s
     return '' if text.empty?
     text.length > limit ? "#{text[0, limit].rstrip}…" : text
@@ -74,7 +77,9 @@ class City < Sequel::Model(:cities)
       Sequel.ilike(:name_be, q) |
       Sequel.ilike(:name_latn, q) |
       Sequel.ilike(:name_en, q) |
-      Sequel.ilike(:name_uk, q)
+      Sequel.ilike(:name_uk, q) |
+      Sequel.ilike(:name_zh_hans, q) |
+      Sequel.ilike(:name_zh_hant, q)
     ).order(:name).all
   end
 end
