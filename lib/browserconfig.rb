@@ -1,0 +1,17 @@
+module BrowserConfig
+  def self.render
+    <<~XML
+      <?xml version="1.0" encoding="utf-8"?>
+      <browserconfig>
+        <msapplication>
+          <tile>
+            <square70x70logo   src="/img/favicon/mstile-70x70.png"/>
+            <square150x150logo src="/img/favicon/mstile-150x150.png"/>
+            <square310x310logo src="/img/favicon/mstile-310x310.png"/>
+            <TileColor>#2563eb</TileColor>
+          </tile>
+        </msapplication>
+      </browserconfig>
+    XML
+  end
+end

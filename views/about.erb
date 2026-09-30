@@ -1,24 +1,74 @@
-<article class="about-page">
-  <header class="page-header">
-    <h1><%= @t['about']['title'] %></h1>
-    <p class="lead"><%= @t['about']['intro'] %></p>
+<!DOCTYPE html>
+<html lang="<%= @locale %>" data-theme="light" data-theme-mode="system">
+<head>
+  <%= erb :'partials/_seo' %>
+  <link rel="stylesheet" href="/js/button-visually-impaired-javascript-master/dist/css/bvi.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="<%= l('/') %>">
+        <span class="logo-icon" aria-hidden="true">🥔</span>
+        <span class="logo-text">Бульбашляндия</span>
+      </a>
+
+      <nav class="site-nav" aria-label="<%= h(@t.dig('menu', 'main')) %>">
+        <a href="<%= l('/') %>"><%= h(@t.dig('nav', 'home')) %></a>
+        <a href="<%= l('/cities') %>"><%= h(@t.dig('nav', 'cities')) %></a>
+        <a href="<%= l('/articles') %>"><%= h(@t.dig('nav', 'history')) %></a>
+        <a href="<%= l('/about') %>"><%= h(@t.dig('nav', 'about')) %></a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#" class="btn-icon bvi-open" aria-label="<%= h(@t.dig('a11y', 'version')) %>" title="<%= h(@t.dig('a11y', 'version')) %>">
+          <span aria-hidden="true">👁</span>
+        </a>
+        <%= erb :'partials/_theme_switcher' %>
+        <%= erb :'partials/_lang_switcher' %>
+      </div>
+    </div>
   </header>
 
-  <section class="about-mission">
-    <h2><%= @t['about']['mission'] %></h2>
-    <p>
-      <%= @t['about']['mission'] %>
-    </p>
-  </section>
+  <main class="site-main">
+    <div class="container">
+      <%= yield %>
+    </div>
+  </main>
 
-  <section class="about-contacts">
-    <h2><%= @t['about']['contacts_title'] %></h2>
-    <p><%= @t['about']['contacts_text'] %></p>
-    <a class="btn btn-primary" href="mailto:hello@bulbashlandia.example"><%= @t['about']['feedback'] %></a>
-  </section>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 Бульбашляндия</p>
 
-  <section class="about-license">
-    <h2><%= @t['legal']['privacy_title'] %></h2>
-    <p><%= @t['about']['license'] %></p>
-  </section>
-</article>
+      <nav class="footer-feeds" aria-label="Feeds">
+        <a href="<%= l('/rss.xml') %>" class="feed-link" title="RSS" aria-label="RSS">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 11a9 9 0 0 1 9 9"/>
+            <path d="M4 4a16 16 0 0 1 16 16"/>
+            <circle cx="5" cy="19" r="1" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="<%= l('/atom.xml') %>" class="feed-link" title="Atom" aria-label="Atom">
+          <svg width="18" height="18" viewBox="-25 -26.75 50 50" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <ellipse rx="3" ry="22" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+            <ellipse rx="3" ry="22" transform="rotate(-66)" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+            <ellipse rx="3" ry="22" transform="rotate(66)" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+            <circle r="22" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <circle r="6.5" fill="currentColor"/>
+            <circle cy="-22" r="4.5" fill="currentColor"/>
+            <circle cx="-20" cy="9" r="4.5" fill="currentColor"/>
+            <circle cx="20" cy="9" r="4.5" fill="currentColor"/>
+          </svg>
+        </a>
+      </nav>
+
+      <p class="footer-note"><%= h(@t.dig('footer', 'made_with')) %></p>
+    </div>
+  </footer>
+
+  <script src="/js/lenis.min.js"></script>
+  <script src="/js/lenis-init.min.js"></script>
+  <script src="/js/button-visually-impaired-javascript-master/dist/js/bvi.min.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

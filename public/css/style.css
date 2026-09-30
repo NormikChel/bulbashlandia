@@ -623,3 +623,24 @@ a:hover { color: var(--accent-hover); }
   .error-actions { flex-direction: column; }
   .error-actions .btn { width: 100%; }
 }
+
+.footer-feeds {
+  display: inline-flex;
+  gap: 8px;
+}
+.feed-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: var(--fg-muted);
+  border: 1px solid var(--border);
+  transition: color .15s, background-color .15s, border-color .15s;
+}
+.feed-link:hover {
+  color: var(--fg);
+  background: var(--surface-2);
+  border-color: var(--border-strong);
+}

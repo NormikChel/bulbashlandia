@@ -1,12 +1,14 @@
 <%
-  title       = @page_title || @t.dig('meta', 'title') || 'Бульбашляндия'
-  description = @t.dig('meta', 'description') || ''
-  keywords    = @t.dig('meta', 'keywords')    || ''
-  site_name   = @t.dig('meta', 'site_name')   || 'Бульбашляндия'
-  og_locale   = @t.dig('seo', 'og_locale')    || 'ru_RU'
-  og_image    = "#{request.base_url}/img/favicon/web-app-manifest-512x512.png"
+  title        = @page_title || @t.dig('meta', 'title')       || 'Бульбашляндия'
+  description  = @t.dig('meta', 'description') || ''
+  keywords     = @t.dig('meta', 'keywords')    || ''
+  site_name    = @t.dig('meta', 'site_name')   || 'Бульбашляндия'
+  author       = @t.dig('meta', 'author')      || site_name
+  og_locale    = @t.dig('seo', 'og_locale')    || 'ru_RU'
+  og_image     = "#{request.base_url}/img/favicon/web-app-manifest-512x512.png"
   og_image_alt = @t.dig('meta', 'og_image_alt') || site_name
   twitter_card = @t.dig('meta', 'twitter_card') || 'summary_large_image'
+  canonical    = @canonical || "#{request.base_url}/#{@locale}"
 
   # Путь без языкового префикса: /ru/cities/minsk → /cities/minsk
   path_without_locale = request.path_info.sub(%r{\A/[a-z-]+(?=/|\z)}, '')
@@ -20,12 +22,13 @@
 <% unless keywords.empty? %>
 <meta name="keywords" content="<%= h(keywords) %>">
 <% end %>
-<meta name="author" content="<%= h(site_name) %>">
+<meta name="author" content="<%= h(author) %>">
+<meta name="robots" content="index, follow">
 <meta name="theme-color" content="#0d0f12" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)">
 
 <%# Canonical %>
-<link rel="canonical" href="<%= @canonical %>">
+<link rel="canonical" href="<%= canonical %>">
 
 <%# Alternate языки (hreflang) %>
 <% I18n::LOCALES.each do |loc| %>
@@ -33,12 +36,20 @@
 <% end %>
 <link rel="alternate" hreflang="x-default" href="<%= "#{request.base_url}/ru#{path_without_locale}" %>">
 
+<%# Feeds %>
+<link rel="alternate" type="application/rss+xml"
+      title="RSS — <%= h(site_name) %>"
+      href="<%= "#{request.base_url}/#{@locale}/rss.xml" %>">
+<link rel="alternate" type="application/atom+xml"
+      title="Atom — <%= h(site_name) %>"
+      href="<%= "#{request.base_url}/#{@locale}/atom.xml" %>">
+
 <%# Open Graph %>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="<%= h(site_name) %>">
 <meta property="og:title" content="<%= h(title) %>">
 <meta property="og:description" content="<%= h(description) %>">
-<meta property="og:url" content="<%= @canonical %>">
+<meta property="og:url" content="<%= canonical %>">
 <meta property="og:image" content="<%= og_image %>">
 <meta property="og:image:width" content="512">
 <meta property="og:image:height" content="512">
@@ -56,6 +67,12 @@
 <meta name="twitter:image" content="<%= og_image %>">
 <meta name="twitter:image:alt" content="<%= h(og_image_alt) %>">
 
+<%# PWA manifest и browserconfig %>
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2563eb">
+<meta name="application-name" content="<%= h(site_name) %>">
+
 <%# Иконки %>
 <link rel="icon" href="/img/favicon/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/img/favicon/favicon.svg">
@@ -63,7 +80,6 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
 <link rel="mask-icon" href="/img/favicon/favicon.svg" color="#2563eb">
-<link rel="manifest" href="/img/favicon/site.webmanifest">
 
 <%# Тема: применяется до CSS, чтобы не мигало %>
 <script>

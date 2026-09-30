@@ -48,10 +48,8 @@
     });
   });
 
-  // Клик вне — закрыть всё
   document.addEventListener('click', function () { closeAll(null); });
 
-  // Escape — закрыть всё
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeAll(null);
   });
@@ -77,7 +75,7 @@
     }
   }
 
-  // ---------- Lenis ----------
+  // ---------- Lenis (плавный скролл) ----------
   if (window.Lenis) {
     var lenis = new Lenis({ duration: 1.1, smoothWheel: true });
     function raf(time) {
@@ -85,5 +83,16 @@
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
+  }
+
+  // ---------- Service Worker ----------
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker
+        .register('/sw.js', { scope: '/' })
+        .catch(function (err) {
+          console.warn('SW registration failed:', err);
+        });
+    });
   }
 })();
