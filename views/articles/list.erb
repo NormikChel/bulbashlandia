@@ -1,0 +1,13 @@
+<header class="page-header">
+  <h1><%= h(@t.dig('nav', 'history')) %></h1>
+</header>
+
+<div class="cities-grid">
+  <% @articles.each do |a| %>
+    <a class="card" href="<%= l("/articles/#{a.slug}") %>">
+      <h2><%= h(a.localized_title(@locale)) %></h2>
+      <p class="region"><%= h(a.category) %></p>
+      <p class="excerpt"><%= h(a.excerpt.to_s) %></p>
+    </a>
+  <% end %>
+</div>

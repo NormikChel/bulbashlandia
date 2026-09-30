@@ -1,9 +1,11 @@
 <section class="hero">
-  <h1><%= @t['hero']['title'] %></h1>
-  <p><%= @t['hero']['subtitle'] %></p>
+  <h1><%= h(@t.dig('hero', 'title')) %></h1>
+  <p><%= h(@t.dig('hero', 'subtitle')) %></p>
 </section>
 
-<section>
+<section class="cities-section" aria-labelledby="home-cities-title">
+  <h2 id="home-cities-title" class="visually-hidden"><%= h(@t.dig('nav', 'cities')) %></h2>
+
   <div class="cities-grid">
     <% @cities.each do |city| %>
       <a class="card" href="<%= l("/cities/#{city.slug}") %>">
@@ -13,3 +15,19 @@
     <% end %>
   </div>
 </section>
+
+<% if @articles && !@articles.empty? %>
+<section class="articles-section" aria-labelledby="home-articles-title">
+  <h2 id="home-articles-title" class="section-title"><%= h(@t.dig('nav', 'history')) %></h2>
+
+  <div class="cities-grid">
+    <% @articles.each do |article| %>
+      <a class="card" href="<%= l("/articles/#{article.slug}") %>">
+        <h3><%= h(article.localized_title(@locale)) %></h3>
+        <p class="region"><%= h(article.category) %></p>
+        <p class="excerpt"><%= h(article.excerpt.to_s) %></p>
+      </a>
+    <% end %>
+  </div>
+</section>
+<% end %>
