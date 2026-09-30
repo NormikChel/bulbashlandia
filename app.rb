@@ -12,18 +12,24 @@ set :port, ENV['PORT'] || 3000
 set :views, 'views'
 set :public_folder, 'public'
 
-# Определяем локаль из URL/куки/заголовка
+# Отдаём favicon и всё прочее из public напрямую, без локали
 before do
+  pass if request.path_info.start_with?('/css/', '/js/', '/img/', '/favicon.ico', '/robots.txt', '/sitemap.xml')
+end
+
+before do
+  al = request.env['HTTP_ACCEPT_LANGUAGE'].to_s
+  from_header = al.scan(/[a-z]{2}/i).map(&:downcase).find { |c| I18n.valid?(c) }
+
   @locale =
-    if I18n.valid?(params[:lang]) then params[:lang]
+    if I18n.valid?(params[:lang])           then params[:lang]
     elsif I18n.valid?(request.cookies['lang']) then request.cookies['lang']
-    else
-      al = request.env['HTTP_ACCEPT_LANGUAGE'].to_s
-      al.scan(/[a-z]{2}(-[a-z]{2,4})?/i).flatten.find { |c| I18n.valid?(c.downcase.split('-').first) }&.split('-')&.first || 'ru'
+    else from_header || 'ru'
     end
+
   response.set_cookie('lang', value: @locale, path: '/', max_age: 31_536_000)
-  @t    = I18n.hash(@locale)
-  @lang = @locale
+  @t         = I18n.hash(@locale)
+  @lang      = @locale
   @canonical = "#{request.base_url}/#{@locale}/"
 end
 
