@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="<%= @locale || 'ru' %>">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 — <%= @t ? @t['errors']['not_found_title'] : 'Страница не найдена' %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="site-main">
+    <h1>404</h1>
+    <p><%= @t ? @t['errors']['not_found_text'] : 'Страница не найдена' %></p>
+    <p><a href="/ru/">← <%= @t ? @t['errors']['back_home'] : 'На главную' %></a></p>
+  </main>
+</body>
+</html>

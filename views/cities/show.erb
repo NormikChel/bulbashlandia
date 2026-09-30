@@ -1,0 +1,48 @@
+<article class="city-page">
+  <nav class="breadcrumbs" aria-label="Breadcrumbs">
+    <a href="<%= l('/') %>"><%= @t['breadcrumbs']['home'] %></a>
+    <span aria-hidden="true"><%= @t['breadcrumbs']['separator'] %></span>
+    <a href="<%= l('/cities') %>"><%= @t['nav']['cities'] %></a>
+    <span aria-hidden="true"><%= @t['breadcrumbs']['separator'] %></span>
+    <span aria-current="page"><%= h(@city.localized_name(@locale)) %></span>
+  </nav>
+
+  <header class="page-header">
+    <h1><%= h(@city.localized_name(@locale)) %></h1>
+    <p class="region"><%= h(@city.localized_region(@locale)) %></p>
+  </header>
+
+  <% if @city.photo_url && !@city.photo_url.empty? %>
+    <figure class="city-photo">
+      <img src="<%= h(@city.photo_url) %>" alt="<%= h(@city.localized_name(@locale)) %>">
+    </figure>
+  <% end %>
+
+  <section class="city-description">
+    <p><%= h(@city.localized_description(@locale)) %></p>
+  </section>
+
+  <aside class="city-facts">
+    <h2><%= @t['city']['history'] %></h2>
+    <dl>
+      <% if @city.population %>
+        <dt><%= @t['city']['population'] %></dt>
+        <dd><%= @city.formatted_population %></dd>
+      <% end %>
+      <% if @city.founded %>
+        <dt><%= @t['city']['founded'] %></dt>
+        <dd><%= @city.founded %></dd>
+      <% end %>
+      <% if @city.area %>
+        <dt><%= @t['city']['area'] %></dt>
+        <dd><%= @city.area %> км²</dd>
+      <% end %>
+      <dt><%= @t['city']['region'] %></dt>
+      <dd><%= h(@city.localized_region(@locale)) %></dd>
+    </dl>
+  </aside>
+
+  <p class="back">
+    <a href="<%= l('/cities') %>"><%= @t['cities']['back_to_list'] %></a>
+  </p>
+</article>
