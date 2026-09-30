@@ -1,0 +1,76 @@
+<%
+  art   = @article
+  safe  = ->(m) { art.respond_to?(m) ? art.public_send(m) : nil }
+
+  # Заголовок: localized_title(@locale) → title → slug
+  title = nil
+  [:localized_title, :title].each do |m|
+    next unless art.respond_to?(m)
+    v = begin
+      art.public_send(m, @locale)
+    rescue ArgumentError
+      art.public_send(m)
+    end
+    if v && !v.to_s.strip.empty?
+      title = v
+      break
+    end
+  end
+  title ||= art.slug
+
+  # Тело: localized_body(@locale) → body → content
+  body = nil
+  [:localized_body, :body, :content].each do |m|
+    next unless art.respond_to?(m)
+    v = begin
+      art.public_send(m, @locale)
+    rescue ArgumentError
+      art.public_send(m)
+    end
+    if v && !v.to_s.strip.empty?
+      body = v
+      break
+    end
+  end
+
+  excerpt  = safe.(:excerpt)
+  category = safe.(:category)
+  created  = safe.(:created_at) || safe.(:published_at)
+%>
+
+<article class="article">
+  <header class="article-header">
+    <h1 class="article-title"><%= h(title) %></h1>
+
+    <% if created %>
+      <p class="article-meta">
+        <time datetime="<%= created.respond_to?(:iso8601) ? created.iso8601 : created %>">
+          <%= h(created.to_s) %>
+        </time>
+        <% if category && !category.to_s.empty? %>
+          · <span class="article-category"><%= h(category) %></span>
+        <% end %>
+      </p>
+    <% end %>
+  </header>
+
+  <% if excerpt && !excerpt.to_s.empty? %>
+    <p class="article-lead"><%= h(excerpt) %></p>
+  <% end %>
+
+  <div class="article-body">
+    <% if body.nil? || body.to_s.strip.empty? %>
+      <p><em><%= h(@t.dig('common', 'error') || 'Текст недоступен') %></em></p>
+    <% else %>
+      <% body.to_s.split(/\n{2,}/).each do |para| %>
+        <p><%= h(para.strip) %></p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <footer class="article-footer">
+    <a class="btn" href="<%= l('/articles') %>">
+      <%= h('← ' + (@t.dig('nav', 'history') || @t.dig('common', 'back') || 'Назад')) %>
+    </a>
+  </footer>
+</article>
