@@ -496,3 +496,39 @@ a:hover { color: var(--accent-hover); }
   }
   html { scroll-behavior: auto; }
 }
+
+.lang-flag {
+  font-size: 16px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.lang-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--fg);
+  font-size: 14px;
+  text-decoration: none;
+  transition: background-color .12s;
+}
+.lang-name:hover {
+  background: var(--surface-2);
+  color: var(--fg);
+}
+.lang-item.is-active > .lang-name {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.lang-item-be {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.lang-item-be > .lang-name {
+  flex: 1;
+}

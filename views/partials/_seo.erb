@@ -1,61 +1,98 @@
 <%
-  title = @t['meta']['title']
-  desc  = @t['meta']['description']
-  image = "#{request.base_url}/img/favicon/web-app-manifest-512x512.png"
+  title       = @t.dig('meta', 'title')       || 'Бульбашляндия'
+  description = @t.dig('meta', 'description') || ''
+  keywords    = @t.dig('meta', 'keywords')    || ''
+  site_name   = @t.dig('meta', 'site_name')   || 'Бульбашляндия'
+  og_locale   = @t.dig('seo', 'og_locale')    || 'ru_RU'
+  og_image    = "#{request.base_url}/img/favicon/web-app-manifest-512x512.png"
+  og_image_alt = @t.dig('meta', 'og_image_alt') || site_name
+  twitter_card = @t.dig('meta', 'twitter_card') || 'summary_large_image'
+
+  # Путь без языкового префикса: /ru/cities/minsk → /cities/minsk
+  path_without_locale = request.path_info.sub(%r{\A/[a-z-]+(?=/|\z)}, '')
 %>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title><%= title %></title>
-<meta name="description" content="<%= desc %>">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
 
-<link rel="canonical" href="<%= @canonical %>">
-<% I18n::LOCALES.each do |loc| %>
-  <link rel="alternate" hreflang="<%= loc %>" href="<%= "#{request.base_url}/#{loc}#{request.path_info.sub(%r{^/[^/]+}, '')}" %>">
+<title><%= h(title) %></title>
+<meta name="description" content="<%= h(description) %>">
+<% unless keywords.empty? %>
+<meta name="keywords" content="<%= h(keywords) %>">
 <% end %>
-<link rel="alternate" hreflang="x-default" href="<%= "#{request.base_url}/ru/" %>">
+<meta name="author" content="<%= h(site_name) %>">
+<meta name="theme-color" content="#0d0f12" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)">
 
-<!-- OG -->
+<%# Canonical %>
+<link rel="canonical" href="<%= @canonical %>">
+
+<%# Alternate языки (hreflang) %>
+<% I18n::LOCALES.each do |loc| %>
+<link rel="alternate" hreflang="<%= loc %>" href="<%= "#{request.base_url}/#{loc}#{path_without_locale}" %>">
+<% end %>
+<link rel="alternate" hreflang="x-default" href="<%= "#{request.base_url}/ru#{path_without_locale}" %>">
+
+<%# Open Graph %>
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Бульбашляндия">
-<meta property="og:title" content="<%= title %>">
-<meta property="og:description" content="<%= desc %>">
+<meta property="og:site_name" content="<%= h(site_name) %>">
+<meta property="og:title" content="<%= h(title) %>">
+<meta property="og:description" content="<%= h(description) %>">
 <meta property="og:url" content="<%= @canonical %>">
-<meta property="og:image" content="<%= image %>">
+<meta property="og:image" content="<%= og_image %>">
 <meta property="og:image:width" content="512">
 <meta property="og:image:height" content="512">
-<meta property="og:locale" content="<%= @locale.tr('-', '_') %>">
-<% I18n::LOCALES.reject { |l| l == @locale }.each do |l| %>
-  <meta property="og:locale:alternate" content="<%= l.tr('-', '_') %>">
+<meta property="og:image:alt" content="<%= h(og_image_alt) %>">
+<meta property="og:locale" content="<%= og_locale %>">
+<% I18n::LOCALES.reject { |l| l == @locale }.each do |loc| %>
+<% alt_locale = I18n.hash(loc).dig('seo', 'og_locale') || loc %>
+<meta property="og:locale:alternate" content="<%= alt_locale %>">
 <% end %>
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="<%= title %>">
-<meta name="twitter:description" content="<%= desc %>">
-<meta name="twitter:image" content="<%= image %>">
+<%# Twitter %>
+<meta name="twitter:card" content="<%= twitter_card %>">
+<meta name="twitter:title" content="<%= h(title) %>">
+<meta name="twitter:description" content="<%= h(description) %>">
+<meta name="twitter:image" content="<%= og_image %>">
+<meta name="twitter:image:alt" content="<%= h(og_image_alt) %>">
 
-<!-- Иконки -->
+<%# Иконки %>
 <link rel="icon" href="/img/favicon/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/img/favicon/favicon.svg">
-<link rel="apple-touch-icon" href="/img/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
+<link rel="mask-icon" href="/img/favicon/favicon.svg" color="#2563eb">
 <link rel="manifest" href="/img/favicon/site.webmanifest">
 
-<!-- Тема: до CSS, чтобы не было мигания -->
+<%# Тема: применяется до CSS, чтобы не мигало %>
 <script>
   (function () {
-    var m = localStorage.getItem('theme') || 'system';
-    var dark = m === 'dark' || (m === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
-    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
-    document.documentElement.dataset.themeMode = m;
+    try {
+      var m = localStorage.getItem('theme') || 'system';
+      var dark = m === 'dark' ||
+        (m === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      document.documentElement.dataset.themeMode = m;
+    } catch (e) {
+      document.documentElement.dataset.theme = 'light';
+    }
   })();
 </script>
 
+<%# JSON-LD микроразметка %>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "Бульбашляндия",
-  "url": "<%= "#{request.base_url}/#{@locale}/" %>",
-  "inLanguage": "<%= @locale %>"
+  "name": "<%= site_name.gsub('"', '\\"') %>",
+  "url": "<%= "#{request.base_url}/#{@locale}" %>",
+  "inLanguage": "<%= @locale %>",
+  "description": "<%= description.gsub('"', '\\"') %>",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "<%= "#{request.base_url}/#{@locale}/cities?q={search_term_string}" %>",
+    "query-input": "required name=search_term_string"
+  }
 }
 </script>

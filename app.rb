@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'sequel'
@@ -37,15 +39,26 @@ before do
   )
 end
 
+# --- 4.5. Убираем хвостовой слэш (кроме корня) — 301 на канонический URL ---
+before do
+  path = request.path_info
+  if path.length > 1 && path.end_with?('/')
+    qs     = request.query_string
+    target = path.chomp('/')
+    target = "#{target}?#{qs}" unless qs.empty?
+    redirect target, 301
+  end
+end
+
 # --- 5. Определение локали ---
 # В before-фильтре params[:lang] недоступен (роуты ещё не сматчены),
 # поэтому берём первый сегмент пути вручную.
 before do
-  path_locale = request.path_info.split('/').reject(&:empty?).first
+  path_locale   = request.path_info.split('/').reject(&:empty?).first
   cookie_locale = request.cookies['lang']
   header_locale = request.env['HTTP_ACCEPT_LANGUAGE'].to_s
-                       .scan(/[a-z]{2}/i).map(&:downcase)
-                       .find { |c| I18n.valid?(c) }
+                        .scan(/[a-z]{2}/i).map(&:downcase)
+                        .find { |c| I18n.valid?(c) }
 
   @locale =
     if I18n.valid?(path_locale)
@@ -59,14 +72,17 @@ before do
   response.set_cookie('lang', value: @locale, path: '/', max_age: 31_536_000)
   @t         = I18n.hash(@locale)
   @lang      = @locale
-  @canonical = "#{request.base_url}/#{@locale}/"
+  @canonical = "#{request.base_url}/#{@locale}"
 end
 
 # --- 6. Хелперы ---
 helpers do
-  # Ссылка с сохранением текущей локали
-  def l(path = '/')
-    "/#{@lang}#{path.start_with?('/') ? path : "/#{path}"}"
+  # Ссылка с сохранением текущей локали. Без хвостового слэша.
+  def l(path = '')
+    path = path.to_s
+    path = path.sub(%r{\A/}, '') # убираем ведущий слэш, если есть
+    path = path.sub(%r{/\z}, '') # убираем хвостовой слэш, если есть
+    path.empty? ? "/#{@lang}" : "/#{@lang}/#{path}"
   end
 
   # Экранирование HTML
@@ -83,17 +99,17 @@ end
 
 # --- 7. Редирект с корня на локаль ---
 get '/' do
-  redirect "/#{@locale}/", 302
+  redirect "/#{@locale}", 302
 end
 
 # --- 8. Страницы с локалью ---
-get '/:lang/?' do
+get '/:lang' do
   pass unless I18n.valid?(params[:lang])
   @cities = City.order(:name).limit(6).all
   erb :index
 end
 
-get '/:lang/cities/?' do
+get '/:lang/cities' do
   pass unless I18n.valid?(params[:lang])
 
   q = params[:q].to_s.strip
@@ -102,7 +118,7 @@ get '/:lang/cities/?' do
   erb :'cities/list'
 end
 
-get '/:lang/cities/:slug/?' do
+get '/:lang/cities/:slug' do
   pass unless I18n.valid?(params[:lang])
   @city = City.first(slug: params[:slug])
   halt 404, 'Город не найден' unless @city
@@ -110,7 +126,7 @@ get '/:lang/cities/:slug/?' do
   erb :'cities/show'
 end
 
-get '/:lang/about/?' do
+get '/:lang/about' do
   pass unless I18n.valid?(params[:lang])
   erb :about
 end
