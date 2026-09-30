@@ -37,18 +37,23 @@ before do
   )
 end
 
-# --- 5. Определение локали из URL / cookie / Accept-Language ---
+# --- 5. Определение локали ---
+# В before-фильтре params[:lang] недоступен (роуты ещё не сматчены),
+# поэтому берём первый сегмент пути вручную.
 before do
-  al = request.env['HTTP_ACCEPT_LANGUAGE'].to_s
-  from_header = al.scan(/[a-z]{2}/i).map(&:downcase).find { |c| I18n.valid?(c) }
+  path_locale = request.path_info.split('/').reject(&:empty?).first
+  cookie_locale = request.cookies['lang']
+  header_locale = request.env['HTTP_ACCEPT_LANGUAGE'].to_s
+                       .scan(/[a-z]{2}/i).map(&:downcase)
+                       .find { |c| I18n.valid?(c) }
 
   @locale =
-    if I18n.valid?(params[:lang])
-      params[:lang]
-    elsif I18n.valid?(request.cookies['lang'])
-      request.cookies['lang']
+    if I18n.valid?(path_locale)
+      path_locale
+    elsif I18n.valid?(cookie_locale)
+      cookie_locale
     else
-      from_header || 'ru'
+      header_locale || 'ru'
     end
 
   response.set_cookie('lang', value: @locale, path: '/', max_age: 31_536_000)
