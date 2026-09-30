@@ -1,109 +1,36 @@
-<!DOCTYPE html>
-<html lang="<%= @locale %>" data-theme="light" data-theme-mode="system">
-<head>
-  <%= erb :'partials/_seo' %>
-  <link rel="stylesheet" href="/js/button-visually-impaired-javascript-master/dist/css/bvi.min.css">
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="<%= l('/') %>">
-        <span class="logo-icon" aria-hidden="true">🥔</span>
-        <span class="logo-text">Бульбашляндия</span>
-      </a>
+<article class="about-page">
+  <h1 class="about-title">
+    <%= h(@t.dig('about', 'title') || @t.dig('nav', 'about') || 'О проекте') %>
+  </h1>
 
-      <nav class="site-nav" aria-label="<%= h(@t.dig('menu', 'main')) %>">
-        <a href="<%= l('/') %>"><%= h(@t.dig('nav', 'home')) %></a>
-        <a href="<%= l('/cities') %>"><%= h(@t.dig('nav', 'cities')) %></a>
-        <a href="<%= l('/articles') %>"><%= h(@t.dig('nav', 'history')) %></a>
-        <a href="<%= l('/about') %>"><%= h(@t.dig('nav', 'about')) %></a>
-      </nav>
+  <p class="about-lead">
+    <%= h(@t.dig('about', 'lead') ||
+          'Бульбашляндия — некоммерческий просветительский проект о Беларуси: её городах, истории, культуре и кухне.') %>
+  </p>
 
-      <div class="header-actions">
-        <a href="#" class="btn-icon bvi-open" aria-label="<%= h(@t.dig('a11y', 'version')) %>" title="<%= h(@t.dig('a11y', 'version')) %>">
-          <span aria-hidden="true">👁</span>
-        </a>
-        <%= erb :'partials/_theme_switcher' %>
-        <%= erb :'partials/_lang_switcher' %>
-      </div>
-    </div>
-  </header>
+  <section class="about-section">
+    <h2><%= h(@t.dig('about', 'what_title') || 'Что здесь есть') %></h2>
+    <ul>
+      <li><%= h(@t.dig('about', 'what_cities')   || 'Каталог городов — от Бреста до Полоцка, с краткой справкой о каждом.') %></li>
+      <li><%= h(@t.dig('about', 'what_articles') || 'Статьи об истории, культуре и кухне — без воды и пафоса.') %></li>
+      <li><%= h(@t.dig('about', 'what_langs')    || 'Материалы на русском, беларуском (кириллица и латинка), английском, украинском и китайском.') %></li>
+      <li><%= h(@t.dig('about', 'what_a11y')     || 'Версия для слабовидящих, светлая и тёмная темы, корректная работа со скринридерами.') %></li>
+    </ul>
+  </section>
 
-  <main class="site-main">
-    <div class="container">
-      <article class="about-page">
-        <h1 class="about-title">
-          <%= h(@t.dig('about', 'title') || @t.dig('nav', 'about') || 'О проекте') %>
-        </h1>
+  <section class="about-section">
+    <h2><%= h(@t.dig('about', 'tech_title') || 'Как это сделано') %></h2>
+    <p>
+      <%= h(@t.dig('about', 'tech_body') ||
+            'Сайт написан на Ruby (Sinatra + Sequel), отдаётся как PWA с офлайн-кэшем, поддерживает RSS и Atom. Исходники открыты.') %>
+    </p>
+  </section>
 
-        <p class="about-lead">
-          <%= h(@t.dig('about', 'lead') ||
-                'Бульбашляндия — некоммерческий просветительский проект о Беларуси: её городах, истории, культуре и кухне.') %>
-        </p>
-
-        <section class="about-section">
-          <h2><%= h(@t.dig('about', 'what_title') || 'Что здесь есть') %></h2>
-          <ul>
-            <li><%= h(@t.dig('about', 'what_cities')    || 'Каталог городов — от Бреста до Полоцка, с краткой справкой о каждом.') %></li>
-            <li><%= h(@t.dig('about', 'what_articles')  || 'Статьи об истории, культуре и кухне — без воды и пафоса.') %></li>
-            <li><%= h(@t.dig('about', 'what_langs')     || 'Материалы на русском, беларуском (кириллица и латинка), английском, украинском и китайском.') %></li>
-            <li><%= h(@t.dig('about', 'what_a11y')      || 'Версия для слабовидящих, светлая и тёмная темы, корректная работа со скринридерами.') %></li>
-          </ul>
-        </section>
-
-        <section class="about-section">
-          <h2><%= h(@t.dig('about', 'tech_title') || 'Как это сделано') %></h2>
-          <p>
-            <%= h(@t.dig('about', 'tech_body') ||
-                  'Сайт написан на Ruby (Sinatra + Sequel), отдаётся как PWA с офлайн-кэшем, поддерживает RSS и Atom. Исходники открыты.') %>
-          </p>
-        </section>
-
-        <section class="about-section">
-          <h2><%= h(@t.dig('about', 'contacts_title') || 'Связь') %></h2>
-          <p>
-            <%= h(@t.dig('about', 'contacts_body') ||
-                  'Если нашли опечатку, ошибку перевода или хотите предложить материал — напишите нам.') %>
-          </p>
-        </section>
-      </article>
-    </div>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© 2026 Бульбашляндия</p>
-
-      <nav class="footer-feeds" aria-label="Feeds">
-        <a href="<%= l('/rss.xml') %>" class="feed-link" title="RSS" aria-label="RSS">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 11a9 9 0 0 1 9 9"/>
-            <path d="M4 4a16 16 0 0 1 16 16"/>
-            <circle cx="5" cy="19" r="1" fill="currentColor"/>
-          </svg>
-        </a>
-        <a href="<%= l('/atom.xml') %>" class="feed-link" title="Atom" aria-label="Atom">
-          <svg width="18" height="18" viewBox="-25 -26.75 50 50" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <ellipse rx="3" ry="22" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
-            <ellipse rx="3" ry="22" transform="rotate(-66)" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
-            <ellipse rx="3" ry="22" transform="rotate(66)" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
-            <circle r="22" fill="none" stroke="currentColor" stroke-width="1.5"/>
-            <circle r="6.5" fill="currentColor"/>
-            <circle cy="-22" r="4.5" fill="currentColor"/>
-            <circle cx="-20" cy="9" r="4.5" fill="currentColor"/>
-            <circle cx="20" cy="9" r="4.5" fill="currentColor"/>
-          </svg>
-        </a>
-      </nav>
-
-      <p class="footer-note"><%= h(@t.dig('footer', 'made_with')) %></p>
-    </div>
-  </footer>
-
-  <script src="/js/lenis.min.js"></script>
-  <script src="/js/lenis-init.min.js"></script>
-  <script src="/js/button-visually-impaired-javascript-master/dist/js/bvi.min.js"></script>
-  <script src="/js/app.js"></script>
-</body>
-</html>
+  <section class="about-section">
+    <h2><%= h(@t.dig('about', 'contacts_title') || 'Связь') %></h2>
+    <p>
+      <%= h(@t.dig('about', 'contacts_body') ||
+            'Если нашли опечатку, ошибку перевода или хотите предложить материал — напишите нам.') %>
+    </p>
+  </section>
+</article>
