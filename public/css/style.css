@@ -1,0 +1,141 @@
+:root {
+  --bg: #f6f7fb;
+  --bg-elev: rgba(255,255,255,.7);
+  --fg: #14161a;
+  --muted: #6b7280;
+  --accent: #d43030;
+  --border: rgba(0,0,0,.08);
+  --shadow: 0 10px 30px rgba(20,22,26,.08);
+  --radius: 14px;
+  --blur: 14px;
+}
+
+[data-theme="dark"] {
+  --bg: #0f1115;
+  --bg-elev: rgba(22,25,31,.7);
+  --fg: #e9ecf1;
+  --muted: #9aa3b2;
+  --border: rgba(255,255,255,.08);
+  --shadow: 0 10px 30px rgba(0,0,0,.4);
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  transition: background .3s ease, color .3s ease;
+}
+
+/* Шапка с блюром */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: .75rem 1.5rem;
+  background: var(--bg-elev);
+  backdrop-filter: blur(var(--blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(180%);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-main { max-width: 1080px; margin: 2rem auto; padding: 0 1.25rem; }
+
+/* Кнопки */
+.btn-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--fg);
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+.btn-icon:hover { background: rgba(127,127,127,.1); }
+
+/* Меню языка / темы */
+.lang-switcher, .theme-switcher { position: relative; }
+
+.lang-menu, .theme-menu {
+  position: absolute; right: 0; top: calc(100% + 8px);
+  min-width: 220px;
+  margin: 0; padding: 6px;
+  list-style: none;
+  background: var(--bg-elev);
+  backdrop-filter: blur(var(--blur));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  opacity: 0; visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity .15s, transform .15s, visibility .15s;
+}
+.lang-switcher[data-open="true"] .lang-menu,
+.theme-switcher[data-open="true"] .theme-menu {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+.lang-menu a, .theme-menu button {
+  display: block; padding: .5rem .75rem; border-radius: 10px;
+  color: var(--fg); text-decoration: none; background: none; border: 0;
+  width: 100%; text-align: left; cursor: pointer;
+  font: inherit;
+}
+.lang-menu a:hover, .theme-menu button:hover { background: rgba(127,127,127,.12); }
+.lang-menu .is-active > a,
+.lang-menu .is-active > .lang-row > a { color: var(--accent); font-weight: 600; }
+
+/* Строка беларуского с двумя скриптами */
+.lang-row {
+  display: flex; align-items: center; justify-content: space-between; gap: .5rem;
+}
+.script-switch { display: inline-flex; gap: 2px; padding: 2px; border: 1px solid var(--border); border-radius: 8px; }
+.script {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 6px;
+  font-size: .85rem; font-weight: 600; text-decoration: none;
+  color: var(--muted);
+}
+.script.is-active { background: var(--accent); color: #fff; }
+
+/* Карточки */
+.cities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.card {
+  display: block;
+  padding: 1.25rem;
+  background: var(--bg-elev);
+  backdrop-filter: blur(calc(var(--blur) / 2));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--fg);
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: transform .15s, border-color .15s;
+}
+.card:hover { transform: translateY(-3px); border-color: var(--accent); }
+.card h3 { margin: 0 0 .25rem; color: var(--accent); }
+
+/* Адаптив */
+@media (max-width: 720px) {
+  .site-header { padding: .5rem .75rem; gap: .75rem; flex-wrap: wrap; }
+  .site-nav { order: 3; width: 100%; display: flex; gap: 1rem; overflow-x: auto; }
+  .site-main { margin: 1rem auto; }
+  .lang-menu, .theme-menu { right: auto; left: 0; }
+}
+
+/* prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

@@ -1,0 +1,23 @@
+<div class="lang-switcher" data-open="false">
+  <button class="lang-toggle btn-icon" aria-haspopup="true" aria-expanded="false">
+    🌐 <span class="lang-current"><%= @locale %></span>
+  </button>
+
+  <ul class="lang-menu" role="menu">
+    <% [['ru','ru'], ['be','be_cyr'], ['be-latn','be_latn'], ['en','en'], ['uk','uk']].each do |url, key| %>
+      <li class="<%= 'is-active' if @locale == url %>">
+        <% if url == 'be' %>
+          <div class="lang-row">
+            <a href="/be/" role="menuitem"><%= @t['lang']['be'] %></a>
+            <div class="script-switch">
+              <a href="/be/"  class="script <%= 'is-active' if @locale == 'be' %>" title="Кірыліца">К</a>
+              <a href="/be-latn/" class="script <%= 'is-active' if @locale == 'be-latn' %>" title="Łacinka">Ł</a>
+            </div>
+          </div>
+        <% else %>
+          <a href="/<%= url %>/" role="menuitem"><%= @t['lang'][key] %></a>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,1 @@
+window.lenisInstance=new Lenis({autoRaf:true,lerp:0.1,duration:1.2,wheelMultiplier:1,easing:x=>Math.min(1,1.001-Math.pow(2,-10*x))})

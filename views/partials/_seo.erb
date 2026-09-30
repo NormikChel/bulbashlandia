@@ -1,0 +1,61 @@
+<%
+  title = @t['meta']['title']
+  desc  = @t['meta']['description']
+  image = "#{request.base_url}/img/favicon/web-app-manifest-512x512.png"
+%>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title><%= title %></title>
+<meta name="description" content="<%= desc %>">
+
+<link rel="canonical" href="<%= @canonical %>">
+<% I18n::LOCALES.each do |loc| %>
+  <link rel="alternate" hreflang="<%= loc %>" href="<%= "#{request.base_url}/#{loc}#{request.path_info.sub(%r{^/[^/]+}, '')}" %>">
+<% end %>
+<link rel="alternate" hreflang="x-default" href="<%= "#{request.base_url}/ru/" %>">
+
+<!-- OG -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Бульбашляндия">
+<meta property="og:title" content="<%= title %>">
+<meta property="og:description" content="<%= desc %>">
+<meta property="og:url" content="<%= @canonical %>">
+<meta property="og:image" content="<%= image %>">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:locale" content="<%= @locale.tr('-', '_') %>">
+<% I18n::LOCALES.reject { |l| l == @locale }.each do |l| %>
+  <meta property="og:locale:alternate" content="<%= l.tr('-', '_') %>">
+<% end %>
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<%= title %>">
+<meta name="twitter:description" content="<%= desc %>">
+<meta name="twitter:image" content="<%= image %>">
+
+<!-- Иконки -->
+<link rel="icon" href="/img/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/img/favicon/favicon.svg">
+<link rel="apple-touch-icon" href="/img/favicon/apple-touch-icon.png">
+<link rel="manifest" href="/img/favicon/site.webmanifest">
+
+<!-- Тема: до CSS, чтобы не было мигания -->
+<script>
+  (function () {
+    var m = localStorage.getItem('theme') || 'system';
+    var dark = m === 'dark' || (m === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    document.documentElement.dataset.themeMode = m;
+  })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Бульбашляндия",
+  "url": "<%= "#{request.base_url}/#{@locale}/" %>",
+  "inLanguage": "<%= @locale %>"
+}
+</script>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="<%= @locale %>" data-theme="light">
+<head>
+  <%= erb :'partials/_seo' %>
+  <link rel="stylesheet" href="/js/button-visually-impaired-javascript-master/dist/css/bvi.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="<%= l('/') %>">🥔 Бульбашляндия</a>
+
+    <nav class="site-nav">
+      <a href="<%= l('/') %>"><%= @t['nav']['home'] %></a>
+      <a href="<%= l('/cities') %>"><%= @t['nav']['cities'] %></a>
+      <a href="<%= l('/about') %>"><%= @t['nav']['about'] %></a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="#" class="bvi-open btn-icon" aria-label="<%= @t['a11y']['version'] %>">👁</a>
+      <%= erb :'partials/_theme_switcher' %>
+      <%= erb :'partials/_lang_switcher' %>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <%= yield %>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Бульбашляндия</p>
+  </footer>
+
+  <script src="/js/lenis.min.js"></script>
+  <script src="/js/lenis-init.min.js"></script>
+  <script src="/js/button-visually-impaired-javascript-master/dist/js/bvi.min.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

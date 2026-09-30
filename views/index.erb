@@ -1,0 +1,13 @@
+<section class="hero">
+  <h1><%= @t['hero']['title'] %></h1>
+  <p><%= @t['hero']['subtitle'] %></p>
+</section>
+
+<section class="cities-grid">
+  <% @cities.each do |city| %>
+    <a class="card" href="<%= l("/cities/#{city.slug}") %>">
+      <h3><%= city.name %></h3>
+      <p><%= city.region %></p>
+    </a>
+  <% end %>
+</section>

@@ -1,0 +1,103 @@
+{
+  "name": "bvi",
+  "version": "2.0.0",
+  "description": "Button visually impaired - is a plugin that automatically changes the visually impaired version of your site. The panel on the site for the visually impaired allows the color scheme of the site, font sizes, the synthesizer reads aloud settings changes. Thanks to it, you can use the functions of the site that meet the needs of people with disabilities.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/js/bvi.cjs",
+  "module": "dist/js/bvi.esm.js",
+  "types": "types/index.d.ts",
+  "unpkg": "dist/js/bvi.min.js",
+  "jsdelivr": "dist/js/bvi.min.js",
+  "style": "dist/css/bvi.min.css",
+  "sass": "src/scss/bvi.scss",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./dist/js/bvi.esm.js",
+      "require": "./dist/js/bvi.cjs",
+      "default": "./dist/js/bvi.esm.js"
+    },
+    "./style": {
+      "types": "./types/style.d.ts",
+      "default": "./dist/css/bvi.min.css"
+    },
+    "./style.css": {
+      "types": "./types/style.d.ts",
+      "default": "./dist/css/bvi.min.css"
+    },
+    "./scss": "./src/scss/bvi.scss",
+    "./dist/*": "./dist/*",
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
+  "homepage": "https://bvi.isvek.ru",
+  "author": "Oleg Korotenko <bvi@isvek.ru>",
+  "scripts": {
+    "rollup": "rollup -c",
+    "build": "npm-run-all css js",
+    "css": "npm-run-all css-compile css-minify",
+    "css-compile": "sass --style expanded src/scss/bvi.scss --source-map dist/css/bvi.css",
+    "css-minify": "cleancss -O2 --format breakWith=lf --with-rebase --source-map --source-map-inline-sources --output dist/css/ --batch --batch-suffix \".min\" \"dist/css/*.css\" \"!dist/css/*.min.css\"",
+    "js": "npm-run-all js-compile --parallel js-minify-umd js-minify-esm",
+    "js-compile": "rollup --config rollup.config.js --sourcemap",
+    "js-lint": "eslint src/js e2e scripts rollup.config.js playwright.config.js eslint.config.js",
+    "js-lint:fix": "eslint src/js e2e scripts rollup.config.js playwright.config.js eslint.config.js --fix",
+    "test:e2e": "npm run build && playwright test",
+    "verify:package": "npm run build && node scripts/verify-package.js",
+    "js-minify-umd": "terser --compress passes=3,toplevel=true --mangle toplevel=true --comments \"/^!/\" --source-map \"content=dist/js/bvi.js.map,includeSources,url=bvi.min.js.map\" --output dist/js/bvi.min.js dist/js/bvi.js",
+    "js-minify-esm": "terser --compress passes=3,toplevel=true --mangle toplevel=true --comments \"/^!/\" --source-map \"content=dist/js/bvi.esm.js.map,includeSources,url=bvi.esm.min.js.map\" --output dist/js/bvi.esm.min.js dist/js/bvi.esm.js",
+    "watch-js": "nodemon --watch src/js/ --ext js --exec \"npm-run-all js-compile js-minify-umd\"",
+    "watch-css": "nodemon --watch src/scss/ --ext scss --exec \"npm-run-all css-compile\"",
+    "server": "node scripts/server.js",
+    "server:stop": "node scripts/server-stop.js",
+    "npm-check-updates": "npx npm-check-updates",
+    "ncu-updates": "ncu -u",
+    "npm-install": "npm install",
+    "npm-install-legacy-peer-deps": "npm install --legacy-peer-deps",
+    "npm-cache-clean": "npm cache clean --force"
+  },
+  "keywords": [
+    "accessibility",
+    "accessible",
+    "bvi",
+    "Button visually impaired",
+    "visually impaired"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/veks/button-visually-impaired-javascript.git"
+  },
+  "bugs": {
+    "url": "https://github.com/veks/button-visually-impaired-javascript/issues"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.63.0",
+    "@rollup/plugin-babel": "^7.1.0",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "clean-css-cli": "^5.6.3",
+    "eslint": "^10.11.0",
+    "globals": "^17.12.0",
+    "nodemon": "^3.1.14",
+    "npm-check-updates": "^23.1.0",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^4.63.4",
+    "sass": "^1.104.1",
+    "terser": "^5.51.2"
+  },
+  "files": [
+    "dist/css",
+    "dist/js",
+    "src/js",
+    "src/scss",
+    "types"
+  ]
+}

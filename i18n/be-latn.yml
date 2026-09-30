@@ -1,0 +1,172 @@
+meta:
+  site_name: "Bułbašlandyja"
+  title: "Bułbašlandyja — sajt pra Biełaruś: harady, historyja, kultura i kuchnia"
+  description: "Intaraktyŭny davednik pa Biełarusi: bujnyja harady i małyja miastečki, historyja, tradycyi, kuchnia i pryroda. Usio samaje važnaje pra krainu — u adnym miescy."
+  keywords: "Biełaruś, biełaruskija harady, historyja Biełarusi, kultura, tradycyi, draniki, Minsk, Hrodna, Brest, Połack"
+  author: "Bułbašlandyja"
+  og_type: "website"
+  og_image_alt: "Bułbašlandyja — sajt pra Biełaruś"
+  twitter_card: "summary_large_image"
+
+nav:
+  home: "Hałoŭnaja"
+  cities: "Harady"
+  history: "Historyja"
+  culture: "Kultura"
+  cuisine: "Kuchnia"
+  nature: "Pryroda"
+  about: "Pra prajekt"
+  contacts: "Kantakty"
+  search: "Pošuk"
+
+theme:
+  label: "Tema afarmleńnia"
+  system: "Jak u systemie"
+  system_hint: "Isci za naladami braŭzera abo systemy"
+  light: "Svetłaja"
+  dark: "Ciomnaja"
+  toggle: "Zmianić temu"
+
+lang:
+  label: "Mova sajta"
+  choose: "Abiarycie movu"
+  current: "Biahučaja mova"
+  ru: "Na russkom"
+  be: "Pa-biełarusku"
+  be_cyr: "K"
+  be_cyr_title: "Kirylika"
+  be_latn: "Ł"
+  be_latn_title: "Łacinka"
+  en: "In English"
+  uk: "Ukrainsku"
+  switch_to: "Piereklučyć na"
+
+hero:
+  title: "Sardečna zaprašajem u Bułbašlandyju"
+  subtitle: "Harady, historyja, kultura i kuchnia Biełarusi — u adnym miescy"
+  cta_primary: "Pahladzieć harady"
+  cta_secondary: "Pra prajekt"
+  badge: "Davednik pa Biełarusi"
+
+sections:
+  cities_title: "Harady"
+  cities_subtitle: "Ad stolicy da najstarejšych miastečak"
+  history_title: "Historyja"
+  history_subtitle: "Połackaje kniastva, VKL, Reč Paspalitaja, XX stahodździe"
+  culture_title: "Kultura"
+  culture_subtitle: "Tradycyi, ramiostvy, muzyka, litaratura"
+  cuisine_title: "Kuchnia"
+  cuisine_subtitle: "Draniki, babka, kałduny, mačanka"
+  nature_title: "Pryroda"
+  nature_subtitle: "Biełaviežskaja pušča, Narač, Brasłaŭskija aziory"
+
+cities:
+  title: "Harady Biełarusi"
+  subtitle: "Vialikija i małyja — u kožnaha svaja historyja"
+  all_cities: "Usie harady"
+  search_placeholder: "Znajści horad…"
+  no_results: "Pa vašym zapycie ničoha nie znajdziena"
+  not_found: "Horad nie znajdzieny"
+  back_to_list: "← Da ŭsich haradoŭ"
+  region_label: "Voblasć"
+  description_label: "Apisańnie"
+
+city:
+  region: "Voblasć"
+  population: "Nasielnictva"
+  founded: "Zasnavany"
+  area: "Plošča"
+  attractions: "Što pahladzieć"
+  history: "Historyja"
+  photo: "Fotazdymak"
+  read_more: "Padrabiaźniej"
+
+about:
+  title: "Pra prajekt"
+  intro: "Bułbašlandyja — nievialiki niezaležny prajekt pra Biełaruś."
+  mission: "My zbirajem u adnym miescy samaje važnaje pra krainu: harady, ludziej, kulturu, kuchniu i pryrodu. Bez lišniaha pafasu i vody."
+  contacts_title: "Zviazacca z nami"
+  contacts_text: "Josc idei, zaŭvahi ci chočacie prapanavać materyjał?"
+  feedback: "Napisać nam"
+  license: "Materyjały dastupnyja pad licenzijaj CC BY-SA 4.0, kali nie paznačana inšaje."
+
+footer:
+  copyright: "© 2026 Bułbašlandyja"
+  made_with: "Zroblena z luboŭju da Biełarusi"
+  links_title: "Razdziel"
+  social_title: "Sacsetki"
+  legal_title: "Pravavoje"
+  privacy: "Pryvatnasć"
+  terms: "Umovy"
+  cookies: "Kuki"
+  source_code: "Zychodny kod"
+
+a11y:
+  version: "Versija dla słabaviduščych"
+  open: "Adkryć panel dastupnasci"
+  close: "Zakryć panel dastupnasci"
+  settings: "Nałady dastupnasci"
+  skip_to_content: "Da asnoŭnaha zmiescu"
+  fontSize: "Pamier šryftu"
+  contrast: "Kantrast"
+  images: "Vyjavy"
+  speech: "Ahučvańnie"
+  clear: "Skinuć nałady"
+
+search:
+  placeholder: "Pošuk pa sajcie…"
+  button: "Znajści"
+  results: "Vyniki pošuku"
+  no_results: "Ničoha nie znajdziena"
+  one_result: "Znajdzieny 1 vynik"
+  many_results: "Znajdziena vynikaŭ: {n}"
+  clear: "Ačyscić"
+
+common:
+  loading: "Zahruzka…"
+  error: "Niešta pajšło nie tak"
+  success: "Hatova"
+  read_more: "Čytać dalaj"
+  show_more: "Pakazać jašče"
+  collapse: "Zharnuć"
+  back: "Nazad"
+  next: "Dalaj"
+  prev: "Nazad"
+  close: "Zakryć"
+  open: "Adkryć"
+  yes: "Tak"
+  no: "Nie"
+  save: "Zachavać"
+  cancel: "Skasavać"
+  all: "Usie"
+  more: "Padrabiaźniej"
+  search: "Pošuk"
+
+menu:
+  open: "Adkryć meniu"
+  close: "Zakryć meniu"
+  main: "Hałoŭnaje meniu"
+
+breadcrumbs:
+  home: "Hałoŭnaja"
+  separator: "/"
+
+errors:
+  not_found_title: "Staronka nie znajdziena"
+  not_found_text: "Zdajecca, hetaja staronka zhubiłasia niedzie ŭ lasach Palessia."
+  server_title: "Pamyłka servera"
+  server_text: "My ŭžo razbirajemsia. Pasprabujcie viarnucca na hałoŭnuju."
+  back_home: "Na hałoŭnuju"
+
+time:
+  updated: "Abnoŭlena"
+  published: "Apublikavana"
+  reading_time: "chv čytańnia"
+
+legal:
+  privacy_title: "Pałityka pryvatnasci"
+  privacy_text: "My nie zbirajem personalnyja dadzienyja i nie pieradajom ich trecim asobam."
+
+seo:
+  og_locale: "be_BY"
+  hreflang: "be-latn"

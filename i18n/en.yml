@@ -1,0 +1,172 @@
+meta:
+  site_name: "Bulbashlandia"
+  title: "Bulbashlandia — a website about Belarus: cities, history, culture and cuisine"
+  description: "An interactive guide to Belarus: big cities and small towns, history, traditions, cuisine and nature. Everything important about the country in one place."
+  keywords: "Belarus, Belarusian cities, history of Belarus, culture, traditions, draniki, Minsk, Grodno, Brest, Polotsk"
+  author: "Bulbashlandia"
+  og_type: "website"
+  og_image_alt: "Bulbashlandia — a website about Belarus"
+  twitter_card: "summary_large_image"
+
+nav:
+  home: "Home"
+  cities: "Cities"
+  history: "History"
+  culture: "Culture"
+  cuisine: "Cuisine"
+  nature: "Nature"
+  about: "About"
+  contacts: "Contacts"
+  search: "Search"
+
+theme:
+  label: "Theme"
+  system: "System"
+  system_hint: "Follow the browser or OS setting"
+  light: "Light"
+  dark: "Dark"
+  toggle: "Switch theme"
+
+lang:
+  label: "Site language"
+  choose: "Choose a language"
+  current: "Current language"
+  ru: "На русском"
+  be: "Па-беларуску"
+  be_cyr: "К"
+  be_cyr_title: "Cyrillic"
+  be_latn: "Ł"
+  be_latn_title: "Łacinka"
+  en: "In English"
+  uk: "Українською"
+  switch_to: "Switch to"
+
+hero:
+  title: "Welcome to Bulbashlandia"
+  subtitle: "Cities, history, culture and cuisine of Belarus — in one place"
+  cta_primary: "Explore cities"
+  cta_secondary: "About the project"
+  badge: "A guide to Belarus"
+
+sections:
+  cities_title: "Cities"
+  cities_subtitle: "From the capital to the oldest towns"
+  history_title: "History"
+  history_subtitle: "The Principality of Polotsk, the Grand Duchy of Lithuania, the Polish–Lithuanian Commonwealth, the 20th century"
+  culture_title: "Culture"
+  culture_subtitle: "Traditions, crafts, music, literature"
+  cuisine_title: "Cuisine"
+  cuisine_subtitle: "Draniki, babka, kalduny, machanka"
+  nature_title: "Nature"
+  nature_subtitle: "Belovezhskaya Pushcha, Naroch, the Braslav Lakes"
+
+cities:
+  title: "Cities of Belarus"
+  subtitle: "Large and small — each with its own story"
+  all_cities: "All cities"
+  search_placeholder: "Find a city…"
+  no_results: "Nothing found for your query"
+  not_found: "City not found"
+  back_to_list: "← Back to all cities"
+  region_label: "Region"
+  description_label: "Description"
+
+city:
+  region: "Region"
+  population: "Population"
+  founded: "Founded"
+  area: "Area"
+  attractions: "What to see"
+  history: "History"
+  photo: "Photo"
+  read_more: "Read more"
+
+about:
+  title: "About the project"
+  intro: "Bulbashlandia is a small independent project about Belarus."
+  mission: "We gather the most important things about the country in one place: cities, people, culture, cuisine and nature. No pathos, no fluff."
+  contacts_title: "Get in touch"
+  contacts_text: "Have ideas, feedback, or want to contribute?"
+  feedback: "Write to us"
+  license: "Materials are available under the CC BY-SA 4.0 license unless stated otherwise."
+
+footer:
+  copyright: "© 2026 Bulbashlandia"
+  made_with: "Made with love for Belarus"
+  links_title: "Sections"
+  social_title: "Social"
+  legal_title: "Legal"
+  privacy: "Privacy"
+  terms: "Terms"
+  cookies: "Cookies"
+  source_code: "Source code"
+
+a11y:
+  version: "Visually impaired version"
+  open: "Open accessibility panel"
+  close: "Close accessibility panel"
+  settings: "Accessibility settings"
+  skip_to_content: "Skip to main content"
+  fontSize: "Font size"
+  contrast: "Contrast"
+  images: "Images"
+  speech: "Speech synthesis"
+  clear: "Reset settings"
+
+search:
+  placeholder: "Search the site…"
+  button: "Search"
+  results: "Search results"
+  no_results: "Nothing found"
+  one_result: "1 result found"
+  many_results: "Results found: {n}"
+  clear: "Clear"
+
+common:
+  loading: "Loading…"
+  error: "Something went wrong"
+  success: "Done"
+  read_more: "Read more"
+  show_more: "Show more"
+  collapse: "Collapse"
+  back: "Back"
+  next: "Next"
+  prev: "Previous"
+  close: "Close"
+  open: "Open"
+  yes: "Yes"
+  no: "No"
+  save: "Save"
+  cancel: "Cancel"
+  all: "All"
+  more: "More"
+  search: "Search"
+
+menu:
+  open: "Open menu"
+  close: "Close menu"
+  main: "Main menu"
+
+breadcrumbs:
+  home: "Home"
+  separator: "/"
+
+errors:
+  not_found_title: "Page not found"
+  not_found_text: "Looks like this page got lost somewhere in the forests of Polesia."
+  server_title: "Server error"
+  server_text: "We are already on it. Try going back to the homepage."
+  back_home: "Back to home"
+
+time:
+  updated: "Updated"
+  published: "Published"
+  reading_time: "min read"
+
+legal:
+  privacy_title: "Privacy policy"
+  privacy_text: "We do not collect personal data and do not share it with third parties."
+
+seo:
+  og_locale: "en_US"
+  hreflang: "en"
