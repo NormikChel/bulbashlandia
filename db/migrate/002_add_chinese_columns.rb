@@ -1,24 +1,22 @@
 Sequel.migration do
   up do
-    # Проверяем и добавляем колонки в таблицу cities
-    unless database.schema(:cities).assoc(:name_zh_hans)
+    unless db[:cities].columns.include?(:name_zh_hans)
       alter_table(:cities) do
-        add_column :name_zh_hans,        String, size: 100 unless columns.include?(:name_zh_hans)
-        add_column :name_zh_hant,        String, size: 100 unless columns.include?(:name_zh_hant)
-        add_column :region_zh_hans,      String, size: 100 unless columns.include?(:region_zh_hans)
-        add_column :region_zh_hant,      String, size: 100 unless columns.include?(:region_zh_hant)
-        add_column :description_zh_hans, Text unless columns.include?(:description_zh_hans)
-        add_column :description_zh_hant, Text unless columns.include?(:description_zh_hant)
+        add_column :name_zh_hans,        String, size: 100
+        add_column :name_zh_hant,        String, size: 100
+        add_column :region_zh_hans,      String, size: 100
+        add_column :region_zh_hant,      String, size: 100
+        add_column :description_zh_hans, Text
+        add_column :description_zh_hant, Text
       end
     end
 
-    # Проверяем и добавляем колонки в таблицу articles
-    unless database.schema(:articles).assoc(:title_zh_hans)
+    unless db[:articles].columns.include?(:title_zh_hans)
       alter_table(:articles) do
-        add_column :title_zh_hans, String, size: 200 unless columns.include?(:title_zh_hans)
-        add_column :title_zh_hant, String, size: 200 unless columns.include?(:title_zh_hant)
-        add_column :body_zh_hans,  Text unless columns.include?(:body_zh_hans)
-        add_column :body_zh_hant,  Text unless columns.include?(:body_zh_hant)
+        add_column :title_zh_hans, String, size: 200
+        add_column :title_zh_hant, String, size: 200
+        add_column :body_zh_hans,  Text
+        add_column :body_zh_hant,  Text
       end
     end
   end
