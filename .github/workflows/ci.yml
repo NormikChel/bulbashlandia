@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test (Ruby ${{ matrix.ruby }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ['3.2', '3.3']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+
+      - name: Show Ruby & Bundler versions
+        run: |
+          ruby -v
+          bundle -v
+
+      - name: Prepare test database
+        env:
+          RACK_ENV: test
+        run: |
+          mkdir -p db
+          bundle exec ruby -e "
+            require 'sequel'
+            db = Sequel.sqlite('db/database.sqlite3')
+            Sequel.extension :migration
+            Sequel::Migrator.run(db, 'db/migrate') if Dir.exist?('db/migrate')
+          "
+
+      - name: Run RSpec
+        env:
+          RACK_ENV: test
+        run: bundle exec rspec --format documentation
+
+  lint:
+    name: Lint (syntax check)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Ruby syntax check
+        run: |
+          find . -name "*.rb" -not -path "./vendor/*" -print0 \
+            | xargs -0 -n1 ruby -c
