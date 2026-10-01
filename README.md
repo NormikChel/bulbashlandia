@@ -66,8 +66,8 @@ spec/            # тесты
 
 ## 📜 Лицензия
 
-Контент — [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).  
-Код — открыт, используй как хочешь.
+- **Код** — [MIT](LICENSE)
+- **Контент** (тексты, статьи, описания городов, словари) — [CC BY-SA 4.0](LICENSE-CONTENT)
 
 ---
 
