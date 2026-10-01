@@ -1,0 +1,25 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # позволяет запускать вручную из вкладки Actions
+
+jobs:
+  deploy:
+    name: Trigger Render deploy
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Call Render Deploy Hook
+        env:
+          HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "::error::RENDER_DEPLOY_HOOK не задан в Secrets"
+            exit 1
+          fi
+          echo "Triggering deploy…"
+          curl -fsSL -X POST "$HOOK" -o /dev/null -w "HTTP %{http_code}\n"
+          echo "✅ Deploy triggered"
