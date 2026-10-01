@@ -1,0 +1,91 @@
+name: 🐛 Баг-репорт
+description: Сообщить о проблеме на сайте или в коде
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Спасибо, что нашли время сообщить о проблеме! Заполни поля ниже — так баг починится быстрее.
+
+  - type: dropdown
+    id: locale
+    attributes:
+      label: Язык сайта
+      description: На какой языковой версии воспроизводится проблема?
+      options:
+        - ru
+        - be
+        - be-latn
+        - en
+        - uk
+        - zh-Hans
+        - zh-Hant
+        - Не знаю / не важно
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: URL страницы
+      description: Скопируй полный адрес, где видишь баг.
+      placeholder: "https://bulbashlandia.onrender.com/ru/cities/minsk"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Что произошло?
+      description: Опиши, что ты увидел. Скриншот тоже поможет.
+      placeholder: "Открыл страницу города, а она показала 404..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Что должно было произойти?
+      description: Опиши ожидаемое поведение.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Шаги воспроизведения
+      description: Как повторить баг?
+      placeholder: |
+        1. Открыть /ru/cities
+        2. Ввести в поиск «минск»
+        3. Нажать Enter
+        4. ...
+    validations:
+      required: false
+
+  - type: input
+    id: browser
+    attributes:
+      label: Браузер и ОС
+      placeholder: "Chrome 130, Windows 11"
+    validations:
+      required: false
+
+  - type: input
+    id: device
+    attributes:
+      label: Устройство
+      placeholder: "Ноутбук / iPhone 15 / Android"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Чек-лист
+      options:
+        - label: Проверил, что баг не воспроизводится в другом браузере
+          required: false
+        - label: Проверил, что бага нет в английской версии
+          required: false
