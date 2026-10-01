@@ -1,0 +1,18 @@
+# По умолчанию — владелец репы
+*                       @NormikChel
+
+# Код
+/app.rb                 @NormikChel
+/lib/                   @NormikChel
+/models/                @NormikChel
+/views/                 @NormikChel
+
+# Контент и переводы
+/i18n/                  @NormikChel
+/db/                    @NormikChel
+
+# Инфраструктура
+/.github/               @NormikChel
+/config.ru              @NormikChel
+/Gemfile                @NormikChel
+/Gemfile.lock           @NormikChel

@@ -1,0 +1,55 @@
+repository:
+  name: bulbashlandia
+  description: "Независимый мультиязычный сайт о Беларуси: города, история, культура, кухня. Ruby + Sinatra + Sequel, PWA, 7 языков."
+  homepage: https://bulbashlandia.onrender.com/ru
+  topics: ruby, sinatra, sequel, pwa, i18n, multilingual, belarus, sqlite, rack, erb, scss, seo, rss, atom, vanilla-js
+  private: false
+  has_issues: true
+  has_projects: false
+  has_wiki: false
+  has_downloads: true
+  default_branch: main
+  allow_squash_merge: true
+  allow_merge_commit: false
+  allow_rebase_merge: true
+  delete_branch_on_merge: true
+  enable_automated_security_fixes: true
+  enable_vulnerability_alerts: true
+
+labels:
+  - name: bug
+    color: d73a4a
+    description: Что-то не работает
+  - name: enhancement
+    color: a2eeef
+    description: Новая функциональность
+  - name: content
+    color: fbca04
+    description: Контент: город, статья, перевод
+  - name: documentation
+    color: 0075ca
+    description: Документация
+  - name: good first issue
+    color: 7057ff
+    description: Хорошо для новичков
+  - name: help wanted
+    color: 008672
+    description: Нужна помощь
+  - name: question
+    color: d876e3
+    description: Вопрос
+  - name: triage
+    color: fbca04
+    description: Ожидает разбора
+  - name: duplicate
+    color: cfd3d7
+    description: Дубликат
+  - name: invalid
+    color: e4e669
+    description: Некорректно
+  - name: wontfix
+    color: ffffff
+    description: Не будет исправлено
+  - name: ignore-for-release
+    color: ededed
+    description: Не попадает в release notes

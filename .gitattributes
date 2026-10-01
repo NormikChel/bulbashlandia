@@ -1,0 +1,32 @@
+# Автоопределение текстовых файлов, нормализация LF
+* text=auto eol=lf
+
+# Явно текстовые
+*.rb        text eol=lf
+*.erb       text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+*.md        text eol=lf
+*.css       text eol=lf
+*.scss      text eol=lf
+*.js        text eol=lf
+*.html      text eol=lf
+*.xml       text eol=lf
+*.ru        text eol=lf
+Gemfile     text eol=lf
+Rakefile    text eol=lf
+config.ru   text eol=lf
+
+# Явно бинарные
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.ico       binary
+*.svg       text eol=lf
+*.sqlite3   binary
+
+# Diff для конкретных файлов
+*.rb        diff=ruby
+*.erb       diff=html
+Gemfile.lock linguist-generated=true
