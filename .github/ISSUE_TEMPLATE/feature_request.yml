@@ -1,0 +1,34 @@
+name: 💡 Идея или предложение
+description: Предложить новый город, статью или фичу
+title: "[Idea]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Что предлагаешь?
+      description: Опиши идею.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Тип предложения
+      options:
+        - Новый город
+        - Новая статья
+        - Новый язык
+        - Улучшение UI
+        - Техническая фича
+        - Другое
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Дополнительно
+      description: Ссылки, источники, примеры.
+    validations:
+      required: false
