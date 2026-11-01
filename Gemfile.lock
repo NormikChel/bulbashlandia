@@ -45,8 +45,8 @@ GEM
       rack-protection (= 4.2.1)
       sinatra (= 4.2.1)
       tilt (~> 2.0)
-    sqlite3 (2.9.6-x64-mingw-ucrt)
-    sqlite3 (2.9.6-x86_64-linux-gnu)
+    sqlite3 (2.10.2-x64-mingw-ucrt)
+    sqlite3 (2.10.2-x86_64-linux-gnu)
     tilt (2.9.0)
 
 PLATFORMS
@@ -83,8 +83,8 @@ CHECKSUMS
   sequel (5.108.0) sha256=ae5996d1196775427916a2fa36e02f99762ead9affb8ea9b1aec2c0b16bdb3a3
   sinatra (4.2.1) sha256=b7aeb9b11d046b552972ade834f1f9be98b185fa8444480688e3627625377080
   sinatra-contrib (4.2.1) sha256=10d091c944d268aa910c618ea40a3c3ebe0533e6e32990d84af92235a3d26b4a
-  sqlite3 (2.9.6-x64-mingw-ucrt) sha256=1f2b88f417fd0a8c1d5ef19c7e817d8b9c61bee6e33b6b36255fb6e40148e6f8
-  sqlite3 (2.9.6-x86_64-linux-gnu) sha256=613188ce02f614126ddbc38c5e217ccffd6306d0dcd9adca9764547aa890a634
+  sqlite3 (2.10.2-x64-mingw-ucrt) sha256=7fe1bf1adfca4fffeaec27371e0a20c1162d9d985681ec9560971a44fc41d198
+  sqlite3 (2.10.2-x86_64-linux-gnu) sha256=ca92731ab464df9cae503fa1a439a549e2724f6953c8c05a7769b59366e38f15
   tilt (2.9.0) sha256=da5735d0280bba96e9a91041bb14aee435ccad5c17b0fa519249ae543d9aa3a5
 
 RUBY VERSION
